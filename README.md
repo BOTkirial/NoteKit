@@ -34,15 +34,10 @@ NoteKit est pensé pour être utilisé dans un foyer :
 - partage de notes
 - gestion des droits CRUD en note par note
 
-## Technologies Front
+## Technologies
 
-- [Mantine](https://mantine.dev/core/stack/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [Next](https://nextjs.org/)
 - [TipTap](https://tiptap.dev/product/editor)
-
-## Technologies Back
-
-- [Symfony](https://symfony.com/)
 - [PostgreSQL](https://www.postgresql.org/)
 
 
