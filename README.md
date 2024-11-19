@@ -39,5 +39,6 @@ NoteKit est pensé pour être utilisé dans un foyer :
 - [Next](https://nextjs.org/)
 - [TipTap](https://tiptap.dev/product/editor)
 - [PostgreSQL](https://www.postgresql.org/)
+- [TypeORM](https://typeorm.io/)
 
 
