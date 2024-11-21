@@ -29,9 +29,9 @@ Les champs disponibles pour les contenus personnalisés :
 ## collaboration
 
 NoteKit est pensé pour être utilisé dans un foyer :
-- facilement selfhostable
-- comptes utilisateurs
-- partage de notes
+- Facilement selfhostable
+- Un système d'authentification et d'autorisation robuste
+- La possibilité de partager ou non des notes
 - gestion des droits CRUD en note par note
 
 ## Technologies
