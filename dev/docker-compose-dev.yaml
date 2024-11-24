@@ -1,0 +1,14 @@
+services:
+  noteKitPostgres:
+    image: postgres:17
+    environment:
+      POSTGRES_PASSWORD: noteKitPostgres
+      POSTGRES_USER: noteKitPostgres
+      POSTGRES_DB: noteKitDB
+    volumes:
+      - noteKitDB:/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  noteKitDB:
