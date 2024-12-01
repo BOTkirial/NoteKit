@@ -42,3 +42,36 @@ NoteKit est pensé pour être utilisé dans un foyer :
 - [TypeORM](https://typeorm.io/)
 
 
+# Permissions system
+
+NoteKit is designed from the ground up with a powerful system to manage access and permissions. If you ever worked with Microsoft's Dataverse, you will feel right at home.
+
+## Users and Teams
+
+In NoteKit, ownership of a Note can be given to either a User or a Team.
+A Team is a group of any number of User.
+Teams can be nested inside others as many times as needed.
+Users can belong to any number of Teams.
+
+## Actions
+
+In NoteKit, creating, viewing, editing and deleting a Note is considered an Action.
+Users can only perform an Action on a Note if they have the permission to do so.
+
+There are also some special Actions like creating or editing a Role, or adding a Widget to a Note.
+
+# Roles and Levels of Permissions
+
+To determine if a User is authorized to perform a given Action, NoteKit will check his Level Of Permission against the owner of the Note.
+
+There are X Levels Of Permissions :
+- *Any* : The User will be able to perform the Action, regardless of who owns the target Note.
+- *Any Team* : The User will be able to perform the Action, if he is part of any of the nested Team of the target Note's owner.
+- *Own Team* : The User will be able to perform the Action if the User is part of the same Team of the target Note's owner.
+- *User* : The User will be able to perform the Action if the User is the owner of the Note.
+- *None* : The User will not be able to perform the Action.
+
+Roles are used to set the Level of Permission of Users or Teams. 
+When you create a Role, you assign the Level Of Permission of you want to each Action.
+Then you are able to give that Role to either a Team or a User.  
+Users inherit the roles of their Teams and all of their nested Teams.
