@@ -67,7 +67,7 @@ To determine if a User is authorized to perform a given Action, NoteKit will che
 There are X Levels Of Permissions :
 - *Any* : The User will be able to perform the Action, regardless of who owns the target Note.
 - *Any Team* : The User will be able to perform the Action, if he is part of any of the nested Team of the target Note's owner.
-- *Own Team* : The User will be able to perform the Action if the User is part of the same Team of the target Note's owner.
+- *Own Team* : The User will be able to perform the Action if the User is part of the same Team as the target Note's owner.
 - *User* : The User will be able to perform the Action if the User is the owner of the Note.
 - *None* : The User will not be able to perform the Action.
 
