@@ -10,11 +10,11 @@ export class User {
     username: string;
 
     @Column()
-    password: string;
+    passwordHash: string;
 
     constructor() {
         this.username = "";
-        this.password = "";
+        this.passwordHash = "";
     }
 
 }
