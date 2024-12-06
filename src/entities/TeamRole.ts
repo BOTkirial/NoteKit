@@ -1,6 +1,7 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Team } from "./Team";
-import { Role } from "./Role";
+import { Team } from "./Team.ts";
+import { Role } from "./Role.ts";
+
 
 @Entity()
 export class TeamRole {

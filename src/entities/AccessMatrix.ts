@@ -1,7 +1,8 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Role } from "./Role";
-import { Action } from "./Action";
-import { LevelOfPermission } from "./LevelOfPermission";
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Role } from "./Role.ts";
+import { Action } from "./Action.ts";
+import { LevelOfPermission } from "./LevelOfPermission.ts";
+
 
 @Entity()
 export class AccesMatrix {

@@ -1,8 +1,11 @@
-import { Entity, ManyToOne } from "typeorm";
-import { User } from "./User";
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./User.ts";
 
 @Entity()
 export class Note {
+
+    @PrimaryGeneratedColumn()
+    id!: number;
 
     @ManyToOne(() => User)
     owner!: User

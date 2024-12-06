@@ -1,5 +1,6 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Team } from "./Team";
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Team } from "./Team.ts";
+
 
 @Entity()
 export class TeamNesting {
