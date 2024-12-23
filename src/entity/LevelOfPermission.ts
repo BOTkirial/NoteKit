@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class LevelOfPermission {
+export default class LevelOfPermission {
 
     @PrimaryGeneratedColumn()
     id!: number;

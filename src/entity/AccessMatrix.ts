@@ -1,11 +1,12 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Role } from "./Role.ts";
-import { Action } from "./Action.ts";
-import { LevelOfPermission } from "./LevelOfPermission.ts";
+import Role from "./Role";
+import Action from "./Action";
+import LevelOfPermission from "./LevelOfPermission";
+
 
 
 @Entity()
-export class AccesMatrix {
+export default class AccesMatrix {
 
     @PrimaryGeneratedColumn()
     id!: number;

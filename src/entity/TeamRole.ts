@@ -1,34 +1,35 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Team } from "./Team.ts";
+import Team from "./Team";
+import Role from "./Role";
 
 
 @Entity()
-export class TeamNesting {
+export default class TeamRole {
 
     @PrimaryGeneratedColumn()
     id!: number;
 
     @ManyToOne(() => Team)
-    parentTeam!: Team;
-
-    @ManyToOne(() => Team)
     team!: Team
+
+    @ManyToOne(() => Role)
+    role!: Role
 
     getTeam(): Team {
         return this.team;
     }
 
-    setTeam(team: Team): TeamNesting {
+    setTeam(team: Team): TeamRole {
         this.team = team;
         return this;
     }
 
-    getParentTeam(): Team {
-        return this.parentTeam;
+    getRole(): Role {
+        return this.role;
     }
 
-    setParentTeam(parentTeam: Team): TeamNesting {
-        this.parentTeam = parentTeam;
+    setRole(role: Role): TeamRole {
+        this.role = role;
         return this;
     }
 
