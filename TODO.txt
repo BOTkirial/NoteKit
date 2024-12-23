@@ -1,5 +1,4 @@
-❌ Ajouter une colonne "description" à la table "action"
-❌ Ajouter une colonne "description" à la table "levelOfPermission"
+
 
 ❌ Système pour alimenter la base de données lors de l'installation du projet
     - Créer un dossier src/seed
@@ -18,3 +17,6 @@
     - commande npm pour la création lors de l'installation du projet
     - variable d'environnement pour le mot de passe
 ❌ Tente de se connecter avec le compte admin
+
+
+❌ Setup CORS pour n'autoriser que les requêtes venant du même domaine

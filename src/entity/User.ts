@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import bcrypt from 'bcrypt';
 
 @Entity()
 export default class User {
@@ -6,50 +7,48 @@ export default class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({type: "varchar", length: 64, unique: true})
+    @Column({ type: "varchar", length: 64, unique: true })
     name: string;
 
-    @Column({type: "varchar", length: 64, nullable: true})
+    @Column({ type: "varchar", length: 64, nullable: true })
     email?: string;
 
-    @Column({type: "varchar", length: 64})
-    passwordHash: string;
+    @Column({ type: "varchar", length: 64 })
+    password: string;
 
-    getId():number {
+    getId(): number {
         return this.id;
     }
 
-    getName():string {
+    getName(): string {
         return this.name;
     }
 
-    setName(name:string): User {
+    setName(name: string): User {
         this.name = name;
         return this;
     }
 
-    getEmail():string | undefined {
+    getEmail(): string | undefined {
         return this.email;
     }
 
-    setEmail(email:string): User {
+    setEmail(email: string): User {
         this.email = email;
         return this;
     }
 
-    getPasswordHash(): string {
-        return this.passwordHash;
+    setPassword(password: string) {
+        this.password = password;
     }
 
-    setPasswordHash(passwordHash:string): User {
-        this.passwordHash = passwordHash;
-        return this;
+    getPassword(): string {
+        return this.password;
     }
 
-//   @BeforeInsert()
-//   async setPassword(password: string) {
-//     const salt = await bcrypt.genSalt()
-//     this.password = await bcrypt.hash(password || this.password, salt)
-//   }
+    @BeforeInsert()
+    async hashPassword() {
+        this.password = await bcrypt.hash(this.password, 10);
+    }
 
 }

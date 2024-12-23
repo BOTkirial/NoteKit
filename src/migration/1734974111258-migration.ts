@@ -1,14 +1,14 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class Migration1734819983300 implements MigrationInterface {
-    name = 'Migration1734819983300'
+export class Migration1734974111258 implements MigrationInterface {
+    name = 'Migration1734974111258'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`CREATE TABLE "user" ("id" SERIAL NOT NULL, "name" character varying(64) NOT NULL, "email" character varying(64), "password" character varying(64) NOT NULL, CONSTRAINT "UQ_065d4d8f3b5adb4a08841eae3c8" UNIQUE ("name"), CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "role" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, CONSTRAINT "UQ_ae4578dcaed5adff96595e61660" UNIQUE ("name"), CONSTRAINT "PK_b36bcfe02fc8de3c57a8b2391c2" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "action" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, CONSTRAINT "UQ_4aa35beeebe7073b51be93aae68" UNIQUE ("name"), CONSTRAINT "PK_2d9db9cf5edfbbae74eb56e3a39" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "level_of_permission" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, CONSTRAINT "UQ_3bafb7eaabc252c654cd0863c1c" UNIQUE ("name"), CONSTRAINT "PK_6a3107c122c7bf10e309bd0b937" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "acces_matrix" ("id" SERIAL NOT NULL, "roleId" integer, "actionId" integer, "levelOfPermissionId" integer, CONSTRAINT "PK_8a1554d9b2937c6f0c6fcd4d541" PRIMARY KEY ("id"))`);
-        await queryRunner.query(`CREATE TABLE "user" ("id" SERIAL NOT NULL, "name" character varying(64) NOT NULL, "email" character varying(64), "passwordHash" character varying(64) NOT NULL, CONSTRAINT "UQ_065d4d8f3b5adb4a08841eae3c8" UNIQUE ("name"), CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "note" ("id" SERIAL NOT NULL, "ownerId" integer, CONSTRAINT "PK_96d0c172a4fba276b1bbed43058" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "team" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, CONSTRAINT "UQ_cf461f5b40cf1a2b8876011e1e1" UNIQUE ("name"), CONSTRAINT "PK_f57d8293406df4af348402e4b74" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "team_nesting" ("id" SERIAL NOT NULL, "parentTeamId" integer, "teamId" integer, CONSTRAINT "PK_25df83bbe1fcb721c047486536d" PRIMARY KEY ("id"))`);
@@ -48,11 +48,11 @@ export class Migration1734819983300 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE "team_nesting"`);
         await queryRunner.query(`DROP TABLE "team"`);
         await queryRunner.query(`DROP TABLE "note"`);
-        await queryRunner.query(`DROP TABLE "user"`);
         await queryRunner.query(`DROP TABLE "acces_matrix"`);
         await queryRunner.query(`DROP TABLE "level_of_permission"`);
         await queryRunner.query(`DROP TABLE "action"`);
         await queryRunner.query(`DROP TABLE "role"`);
+        await queryRunner.query(`DROP TABLE "user"`);
     }
 
 }
