@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { AppDataSource } from '../data-source';
+import { auth } from './authentificationService';
 
 /**
  * Custom route handler
@@ -8,6 +9,11 @@ import { AppDataSource } from '../data-source';
  */
 export const withApiMiddleware = (handler: (req: NextApiRequest, res: NextApiResponse) => void) => {
     return async (req: NextApiRequest, res: NextApiResponse) => {
+
+        // check if the user is authenticated
+        const session = await auth();
+        if(session === null)
+            throw new Error("Not authenticated")
 
         // initializes the database connection before any requests
         try {

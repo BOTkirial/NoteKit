@@ -9,6 +9,3 @@ export const GET = withApiMiddleware(async (req) => {
     return NextResponse.json({ error: 'User created' }, { status: 200 });
 
 })
-
-
-

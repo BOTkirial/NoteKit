@@ -9,6 +9,9 @@ export default class Action {
     @Column({type: "varchar", length: 128, unique: true})
     name!: string;
 
+    @Column({ type: "varchar", length: 512, unique: false })
+    description?: string;
+
     setName(name:string):Action {
         this.name = name;
         return this;
@@ -16,6 +19,15 @@ export default class Action {
 
     getName():string {
         return this.name;
+    }
+
+    setDescription(description: string): Action {
+        this.description = description;
+        return this;
+    }
+
+    getDescription(): string {
+        return this.description;
     }
 
 }
