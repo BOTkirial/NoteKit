@@ -1,8 +1,8 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "./User.ts";
+import User from "./User";
 
 @Entity()
-export class Note {
+export default class Note {
 
     @PrimaryGeneratedColumn()
     id!: number;

@@ -1,10 +1,10 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Team } from "./Team.ts";
-import { Role } from "./Role.ts";
+import Team from "./Team";
+import User from "./User";
 
 
 @Entity()
-export class TeamRole {
+export default class UserTeam {
 
     @PrimaryGeneratedColumn()
     id!: number;
@@ -12,24 +12,24 @@ export class TeamRole {
     @ManyToOne(() => Team)
     team!: Team
 
-    @ManyToOne(() => Role)
-    role!: Role
+    @ManyToOne(() => User)
+    user!: User
 
     getTeam(): Team {
         return this.team;
     }
 
-    setTeam(team: Team): TeamRole {
+    setTeam(team: Team): UserTeam {
         this.team = team;
         return this;
     }
 
-    getRole(): Role {
-        return this.role;
+    getUser(): User {
+        return this.user;
     }
 
-    setRole(role: Role): TeamRole {
-        this.role = role;
+    setUser(user: User): UserTeam {
+        this.user = user;
         return this;
     }
 

@@ -1,0 +1,20 @@
+❌ Ajouter une colonne "description" à la table "action"
+❌ Ajouter une colonne "description" à la table "levelOfPermission"
+
+❌ Système pour alimenter la base de données lors de l'installation du projet
+    - Créer un dossier src/seed
+    - Créer un script src/seed-user.ts, seed-role.ts etc.. pour chaque entité
+    - Créer un script src/seed.ts qui appelle chaque sous-script
+    - Commande npm pour déclencher le script principal : { "seed": "ts-node src/seeds/index.ts" }
+
+
+❌ Alimenter la base de données lors de l'installation du projet
+    - Créer une action "Create User" qui autorise la création d'utilisateur dans l'application
+    - Créer le rôle admin
+    - attribuer l'action au rôle
+
+❌ Générer des hash de mots de passe (bcrypt)
+❌ Créer le compte admin
+    - commande npm pour la création lors de l'installation du projet
+    - variable d'environnement pour le mot de passe
+❌ Tente de se connecter avec le compte admin

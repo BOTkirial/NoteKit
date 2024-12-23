@@ -1,10 +1,10 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Role } from "./Role.ts";
-import { User } from "./User.ts";
+import Role from "./Role";
+import User from "./User";
 
 
 @Entity()
-export class UserRole {
+export default class UserRole {
 
     @PrimaryGeneratedColumn()
     id!: number;
