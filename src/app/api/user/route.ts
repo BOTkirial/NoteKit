@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { createUser } from "../../../services/userService";
-import { withApiMiddleware } from "../../../services/apiMiddleware";
+import { useApiMiddleware } from "../../../services/apiMiddleware";
 
-export const GET = withApiMiddleware(async (req) => {
+export const GET = useApiMiddleware(async (req) => {
     
     createUser("test", "test")
 

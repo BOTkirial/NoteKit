@@ -6,7 +6,7 @@ import LevelOfPermission from "./LevelOfPermission";
 
 
 @Entity()
-export default class AccesMatrix {
+export default class AccessMatrix {
 
     @PrimaryGeneratedColumn()
     id!: number;
@@ -24,7 +24,7 @@ export default class AccesMatrix {
         return this.role;
     }
 
-    setRole(role: Role): AccesMatrix {
+    setRole(role: Role): AccessMatrix {
         this.role = role;
         return this;
     }
@@ -33,7 +33,7 @@ export default class AccesMatrix {
         return this.action;
     }
 
-    setAction(action: Action): AccesMatrix {
+    setAction(action: Action): AccessMatrix {
         this.action = action;
         return this;
     }
@@ -42,7 +42,7 @@ export default class AccesMatrix {
         return this.levelOfPermission;
     }
 
-    setLevelOfPermission(levelOfPermission: LevelOfPermission): AccesMatrix {
+    setLevelOfPermission(levelOfPermission: LevelOfPermission): AccessMatrix {
         this.levelOfPermission = levelOfPermission;
         return this;
     }

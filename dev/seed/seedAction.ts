@@ -6,6 +6,11 @@ const runActions = async () => {
     if(!AppDataSource.isInitialized)
         await AppDataSource.initialize();
 
+    const count = await AppDataSource.manager.count(Action);
+    if(count > 0) {
+        return;
+    }
+
     // Create a Note
     const createNote = new Action();
     createNote.setName("Create a Note")

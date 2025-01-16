@@ -2,7 +2,7 @@ import path from "path"
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import User from "./entity/User"
-import AccesMatrix from "./entity/AccessMatrix"
+import AccessMatrix from "./entity/AccessMatrix"
 import Action from "./entity/Action"
 import LevelOfPermission from "./entity/LevelOfPermission"
 import Note from "./entity/Note"
@@ -25,7 +25,7 @@ export const AppDataSource = new DataSource({
         logging: true,
         
         // entities: [ path.join(__dirname, '/entity/*') ],
-        entities: [ AccesMatrix, Action, LevelOfPermission, Note, Role, Team, TeamNesting, TeamRole, User, UserRole, UserTeam ],
+        entities: [ AccessMatrix, Action, LevelOfPermission, Note, Role, Team, TeamNesting, TeamRole, User, UserRole, UserTeam ],
         migrations: [path.join(__dirname, '/migration/*')],
         subscribers: [],
     })
