@@ -6,6 +6,11 @@ const runLevelOfPermissions = async () => {
     if(!AppDataSource.isInitialized)
         await AppDataSource.initialize();
 
+    const count = await AppDataSource.manager.count(LevelOfPermission);
+    if(count > 0) {
+        return;
+    }
+
     // None
     const lopNone = new LevelOfPermission();
     lopNone.setName("none");

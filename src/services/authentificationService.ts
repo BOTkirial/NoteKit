@@ -77,7 +77,7 @@ import User from "../entity/User";
   } satisfies NextAuthOptions
   
   // Use it in server contexts
-  export function auth(
+  export function useAuthentification(
     ...args:
       | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
       | [NextApiRequest, NextApiResponse]
