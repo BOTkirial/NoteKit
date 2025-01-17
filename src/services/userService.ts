@@ -16,13 +16,3 @@ export const createUser = async (name: string, password: string, email?: string)
     }
 
 }
-
-export const getUserById = async (id:number) => {
-
-    await AppDataSource.initialize();
-
-    const user:User|null = await AppDataSource.manager.findOne(User, {where: {id: id}})
-
-    return user
-
-}

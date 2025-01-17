@@ -49,9 +49,8 @@ import User from "../entity/User";
   
           // If they match the authentification is successfull
   
-          if (dbUser && areCredentialsValid) {
+          if (dbUser && areCredentialsValid) 
             return dbUser as any;
-          }
   
           return null;
   
@@ -63,14 +62,12 @@ import User from "../entity/User";
     },
     callbacks: {
         async jwt({ token, user }) {
-        console.log(token, user)
           if (user) {
             token = {};
             token.id = user.id;
             token.name = user.name;
             token.email = user.email;
           }
-          console.log(token)
           return token;
         }
       },
