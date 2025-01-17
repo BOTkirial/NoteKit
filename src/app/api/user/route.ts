@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
-import { createUser } from "../../../services/userService";
 import { useApiMiddleware } from "../../../services/apiMiddleware";
+import { AppDataSource } from "../../../data-source";
+import User from "../../../entity/User";
 
 export const GET = useApiMiddleware(async (req) => {
-    
-    createUser("test", "test")
 
-    return NextResponse.json({ error: 'User created' }, { status: 200 });
+    const user = await AppDataSource.manager.find(User, { where: { name: "admin" } });
+
+    return NextResponse.json(user, { status: 200 });
 
 })

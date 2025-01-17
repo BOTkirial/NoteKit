@@ -5,9 +5,9 @@ import runRoles from "./seedRole";
 import runUserRoles from "./seedRoleUser";
 import runUsers from "./seedUser";
 
-console.log("SEEDING START");
 
 const run = async () => {
+    console.info("SEEDING START");
     await runActions();
     await runUsers();
     await runLevelOfPermissions();
@@ -15,8 +15,7 @@ const run = async () => {
 
     await runAccesMatrix();
     await runUserRoles();
+    console.info("SEEDING COMPLETE");
 }
 
 run();
-
-console.log("SEEDING COMPLETE");
