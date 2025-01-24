@@ -1,15 +1,14 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { AppDataSource } from '../data-source';
-import { useAuthentification } from './authentificationService';
-import { NextResponse } from 'next/server';
+import { AppDataSource } from '../../data-source';
+import { useAuthentification } from './nextAuthConfig';
+import { NextRequest, NextResponse } from 'next/server';
 
 /**
  * Custom route handler
  * Should be used with every API route
  * Used instead of middleware.ts because middleware.ts cannot handle typeorm initialization because of restrictions with Edge runtime
  */
-export const useApiMiddleware = (handler: (req: NextApiRequest, res: NextApiResponse) => void) => {
-    return async (req: NextApiRequest, res: NextApiResponse) => {
+export const useApiMiddleware = (handler: (req: NextRequest, res: NextResponse) => void) => {
+    return async (req: NextRequest, res: NextResponse) => {
 
         // check if the user is authenticated
         const session = await useAuthentification();
