@@ -1,5 +1,5 @@
 import { AppDataSource } from '../../data-source';
-import { useAuthentification } from './nextAuthConfig';
+import checkAuthentificationAndDatabase from './checkAuthentificationAndDatabase';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
@@ -9,20 +9,8 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 export const useApiMiddleware = (handler: (req: NextRequest, res: NextResponse) => void) => {
     return async (req: NextRequest, res: NextResponse) => {
-
-        // check if the user is authenticated
-        const session = await useAuthentification();
-        
-        if(session === null)
-            return NextResponse.json({message: "Unauthorized"}, { status: 401 });
-
-        // initializes the database connection before any requests
-        try {
-            if(!AppDataSource.isInitialized)
-                await AppDataSource.initialize();
-        } catch (error:any) {
-            throw new Error("An error occured when initializing database connection")
-        }
+      
+        await checkAuthentificationAndDatabase();
 
         // Proceed to the actual handler
         return handler(req, res);

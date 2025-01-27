@@ -51,3 +51,17 @@ export const addTeamToTeam = (team: Team, parentTeam: Team) => {
 export const removeTeamFromTeam = (team: Team, parentTeam: Team) => {
     
 }
+
+/**
+ * Returns all team the given team is part of
+ */
+export const getTeamParentTeams = (team: Team) => {
+    
+}
+
+/**
+ * Returns all team inside the given team
+ */
+export const getTeamChildrenTeams = (team: Team) => {
+    
+}
