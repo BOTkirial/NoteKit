@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class Migration1737030328840 implements MigrationInterface {
-    name = 'Migration1737030328840'
+export class Migration1737979399634 implements MigrationInterface {
+    name = 'Migration1737979399634'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "user" ("id" SERIAL NOT NULL, "name" character varying(64) NOT NULL, "email" character varying(64), "password" character varying(64) NOT NULL, CONSTRAINT "UQ_065d4d8f3b5adb4a08841eae3c8" UNIQUE ("name"), CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id"))`);
-        await queryRunner.query(`CREATE TABLE "role" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, "description" character varying(512) NOT NULL, CONSTRAINT "UQ_ae4578dcaed5adff96595e61660" UNIQUE ("name"), CONSTRAINT "PK_b36bcfe02fc8de3c57a8b2391c2" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "role" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, "description" character varying(512), CONSTRAINT "UQ_ae4578dcaed5adff96595e61660" UNIQUE ("name"), CONSTRAINT "PK_b36bcfe02fc8de3c57a8b2391c2" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "action" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, "description" character varying(512) NOT NULL, CONSTRAINT "UQ_4aa35beeebe7073b51be93aae68" UNIQUE ("name"), CONSTRAINT "PK_2d9db9cf5edfbbae74eb56e3a39" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "level_of_permission" ("id" SERIAL NOT NULL, "name" character varying(128) NOT NULL, "description" character varying(512) NOT NULL, CONSTRAINT "UQ_3bafb7eaabc252c654cd0863c1c" UNIQUE ("name"), CONSTRAINT "PK_6a3107c122c7bf10e309bd0b937" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "access_matrix" ("id" SERIAL NOT NULL, "roleId" integer, "actionId" integer, "levelOfPermissionId" integer, CONSTRAINT "PK_7125b519d535952416054ac786f" PRIMARY KEY ("id"))`);

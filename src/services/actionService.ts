@@ -1,19 +1,47 @@
-export const createAction = () => {
-    
+/**
+ * Creates an action in the database
+ */
+// export const createAction = (actionName: string) => {    
+// }
+
+import { AppDataSource } from "../data-source";
+import Action from "../entity/Action";
+import checkAuthentificationAndDatabase from "./api/checkAuthentificationAndDatabase"
+
+/**
+ * Finds an action in the database by it's name
+ */
+export const getActionByName = async (actionName: string):Promise<Action> => {
+    await checkAuthentificationAndDatabase();
+    const action = await AppDataSource.manager.findOneBy(Action,  { name: actionName } );
+    if(action === null) {
+        throw new Error("No action found in the database")
+    }
+    return action;
 }
 
-export const getActionByName = () => {
-    
+/**
+ * Finds an action in the database by it's id
+ */
+export const getActionById = async (actionId: number):Promise<Action> => {
+    await checkAuthentificationAndDatabase();
+    const action = await AppDataSource.manager.findOneBy(Action,  { id: actionId } );
+    if(action === null) {
+        throw new Error("No action found in the database")
+    }
+    return action;
 }
 
-export const getActionById = () => {
+/**
+ * updates an action in the database
+ */
+// export const updateAction = (action: Action, updates: any) => {
     
-}
+// }
 
-export const updateAction = () => {
+/**
+ * Deletes an action from the database
+ */
+// export const deleteAction = (action: Action) => {
     
-}
-
-export const deleteAction = () => {
-    
-}
+// }

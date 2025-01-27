@@ -9,7 +9,7 @@ export default class Role {
     @Column({ type: "varchar", length: 128, unique: true })
     name!: string;
 
-    @Column({ type: "varchar", length: 512, unique: false })
+    @Column({ type: "varchar", length: 512, unique: false, nullable: true })
     description?: string;
 
     setName(name: string): Role {
