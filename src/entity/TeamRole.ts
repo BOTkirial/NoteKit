@@ -1,10 +1,10 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import Team from "./Team";
 import Role from "./Role";
-
+import BaseEntity from "./BaseEntity";
 
 @Entity()
-export default class TeamRole {
+export default class TeamRole extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id!: number;

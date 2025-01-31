@@ -1,12 +1,14 @@
+import { AppDataSource } from "../data-source";
+import Action from "../entity/Action";
+import checkAuthentificationAndDatabase from "./api/checkAuthentificationAndDatabase"
+
+
 /**
  * Creates an action in the database
  */
 // export const createAction = (actionName: string) => {    
 // }
 
-import { AppDataSource } from "../data-source";
-import Action from "../entity/Action";
-import checkAuthentificationAndDatabase from "./api/checkAuthentificationAndDatabase"
 
 /**
  * Finds an action in the database by it's name

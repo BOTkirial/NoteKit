@@ -2,11 +2,10 @@ import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import Role from "./Role";
 import Action from "./Action";
 import LevelOfPermission from "./LevelOfPermission";
-
-
+import BaseEntity from "./BaseEntity";
 
 @Entity()
-export default class AccessMatrix {
+export default class AccessMatrix extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id!: number;

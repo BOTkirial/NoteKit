@@ -12,6 +12,7 @@ import TeamNesting from "./entity/TeamNesting"
 import TeamRole from "./entity/TeamRole"
 import UserRole from "./entity/UserRole"
 import UserTeam from "./entity/UserTeam"
+import { BaseSubscriber } from "./entity/subscribers/BaseSubscriber"
 
 export const AppDataSource = new DataSource({
         type: "postgres",
@@ -27,5 +28,5 @@ export const AppDataSource = new DataSource({
         // entities: [ path.join(__dirname, '/entity/*') ],
         entities: [ AccessMatrix, Action, LevelOfPermission, Note, Role, Team, TeamNesting, TeamRole, User, UserRole, UserTeam ],
         migrations: [path.join(__dirname, '/migration/*')],
-        subscribers: [],
+        subscribers: [BaseSubscriber],
     })
