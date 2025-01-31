@@ -1,8 +1,9 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import User from "./User";
+import BaseEntity from "./BaseEntity";
 
 @Entity()
-export default class Note {
+export default class Note extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id!: number;

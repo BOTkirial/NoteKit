@@ -1,8 +1,9 @@
 import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
+import BaseEntity from "./BaseEntity";
 
 @Entity()
-export default class User {
+export default class User extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;

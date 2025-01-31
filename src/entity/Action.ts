@@ -1,7 +1,8 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import BaseEntity from "./BaseEntity";
 
 @Entity()
-export default class Action {
+export default class Action extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id!: number;

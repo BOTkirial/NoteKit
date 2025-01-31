@@ -1,14 +1,11 @@
+import { AppDataSource } from "../data-source";
+import LevelOfPermission from "../entity/LevelOfPermission";
+import checkAuthentificationAndDatabase from "./api/checkAuthentificationAndDatabase";
 
 /**
  * Creates a new level of permission in the database
  */
 // export const createLevelOfPermission = () => {
-
-import { AppDataSource } from "../data-source";
-import LevelOfPermission from "../entity/LevelOfPermission";
-import checkAuthentificationAndDatabase from "./api/checkAuthentificationAndDatabase";
-
-    
 // }
 
 /**

@@ -1,9 +1,9 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import Team from "./Team";
-
+import BaseEntity from "./BaseEntity";
 
 @Entity()
-export default class TeamNesting {
+export default class TeamNesting extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id!: number;
