@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { useApiMiddleware } from "../../../../services/api/apiMiddleware";
+import { useApiMiddleware } from "../../../../services/api/apiMiddleware.js";
 
 
 
-export const GET = useApiMiddleware(async (req:NextRequest, res: NextResponse) => {
+export const GET = useApiMiddleware(async (req:NextRequest) => {
 
     
 
-    return NextResponse.json({req: req, res: res, url: req.nextUrl.href}, { status: 200 });
-
+    return NextResponse.json({ req: req, url: req.nextUrl.href }, { status: 200 });
 })

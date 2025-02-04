@@ -50,8 +50,11 @@ export const removeRoleFromUser = async (role: Role, user: User): Promise<void> 
  */
 export const getUserRoles = async (user:User): Promise<Role[]> => {
     await checkAuthentificationAndDatabase();
+    console.log(user)
     // const userRoles = await AppDataSource.manager.findBy(UserRole, {user: user});
-    const userRoles = await AppDataSource.manager.find(UserRole, { where: {user: user}, relations: {role: true} })
+    const userRoles = await AppDataSource.manager.find(UserRole, { where: {user: {id: user.id}}, relations: {role: true} })
+    console.log("getUserRoles")
+    console.log(userRoles)
     return userRoles.map(ur => ur.getRole());
 }
 
@@ -64,6 +67,8 @@ export const getUserLopAction = async (user:User, action: Action): Promise<Level
 
     const userRoles = (await getUserRoles(user)).map(role => role.id);
 
+    console.log(userRoles);
+
     const queryBuilder = AppDataSource.manager.createQueryBuilder();
     const result = await queryBuilder
         .from(AccessMatrix, "am")
@@ -72,12 +77,8 @@ export const getUserLopAction = async (user:User, action: Action): Promise<Level
         .leftJoin("am.levelOfPermission", "amlop")
         .where("am.role in (:...userRoles)")
         .setParameter("userRoles", userRoles)
-        .select(
-            "amr.name as role_name, jsonb_agg(jsonb_build_object('ama_name', ama.name, 'amlop_name', amlop.name)) as permissions"
-            // "jsonb_agg(jsonb_build_object('am_id', am.id, 'ama_name', ama.name, 'amlop_name', amlop.name)) as permissions"
-        )
+        .select("amr.name as role_name, jsonb_agg(jsonb_build_object('ama_name', ama.name, 'amlop_name', amlop.name)) as permissions")
         .groupBy("role_name")
-        // .groupBy("role_name, action_name, lop_name")
         .execute();
 
     console.log(result);

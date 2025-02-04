@@ -1,11 +1,14 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import BaseEntity from "./BaseEntity";
+import BaseEntity from "./BaseEntity.js";
 
 @Entity()
 export default class LevelOfPermission extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id!: number;
+
+    @Column({type: "int"})
+    weight!: number;
 
     @Column({type: "varchar", length: 128, unique: true})
     name!: string;
@@ -20,6 +23,15 @@ export default class LevelOfPermission extends BaseEntity {
 
     getName():string {
         return this.name;
+    }
+
+    getWeight():number {
+        return this.weight;
+    }
+
+    setWeight(weight: number): LevelOfPermission {
+        this.weight = weight;
+        return this;
     }
 
     setDescription(description: string): LevelOfPermission {

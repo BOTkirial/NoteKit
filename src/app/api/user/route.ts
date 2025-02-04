@@ -12,7 +12,8 @@ export const GET = useApiMiddleware(async (req:NextRequest) => {
     // const user = await AppDataSource.manager.find(User, { where: { name: "admin" } });
 
     const user = await getUserByName("admin");
-    // const roles = await getUserRoles(user);
+    // console.log(user)
+    const roles = await getUserRoles(user);
     const action = await getActionById(1);
 
     // createRole("tst role");
