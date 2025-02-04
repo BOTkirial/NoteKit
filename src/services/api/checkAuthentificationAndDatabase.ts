@@ -17,8 +17,8 @@ const checkAuthentificationAndDatabase = async () => {
         if(!AppDataSource.isInitialized)
             await AppDataSource.initialize();
     } catch (error:any) {
-        console.info("An error occured when initializing database connection");
-        throw new Error("An error occured when initializing database connection")
+        console.info("An error occured when initializing database connection : " + error);
+        throw new Error("An error occured when initializing database connection : " + error)
     }
     
     console.info("Database connection OK");

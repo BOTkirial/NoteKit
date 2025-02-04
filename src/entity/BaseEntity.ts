@@ -1,7 +1,8 @@
 import { CreateDateColumn, ManyToOne, UpdateDateColumn } from "typeorm";
+import type { Relation } from "typeorm";
 import User from "./User";
 
-export default class BaseEntity {
+export default abstract class BaseEntity {
 
     @CreateDateColumn()
     createdAt: Date;
@@ -9,11 +10,11 @@ export default class BaseEntity {
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @ManyToOne(() => User)
-    createdBy!: User
+    @ManyToOne("User")
+    createdBy: Relation<User>
 
-    @ManyToOne(() => User)
-    updatedBy!: User
+    @ManyToOne("User")
+    updatedBy: Relation<User>
 
     getCreatedAt(): Date {
         return this.createdAt;

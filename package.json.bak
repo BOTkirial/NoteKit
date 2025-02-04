@@ -1,0 +1,37 @@
+{
+   "name": "notekit",
+   "version": "0.1.0",
+   "private": true,
+   "scripts": {
+      "dev": "next dev",
+      "build": "NODE_OPTIONS='--loader ts-node/esm' next build",
+      "start": "ts-node src/index.ts",
+      "lint": "next lint",
+      "typeorm": "typeorm-ts-node-commonjs",
+      "migration:create": "NODE_OPTIONS='--loader ts-node/esm' npx typeorm migration:create ./src/migration/migration",
+      "migration:generate": "NODE_OPTIONS='--loader ts-node/esm' npx typeorm migration:generate -d ./src/data-source.ts ./src/migration/migration",
+      "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts",
+      "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/data-source.ts",
+      "seed": "NODE_OPTIONS='--loader ts-node/esm' npx ts-node ./dev/seed/seed.ts",
+      "test": "vitest"
+   },
+   "dependencies": {
+      "bcrypt": "^5.1.1",
+      "next": "15.1.0",
+      "next-auth": "^4.24.11",
+      "pg": "^8.4.0",
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0",
+      "reflect-metadata": "^0.1.13",
+      "typeorm": "0.3.20"
+   },
+   "devDependencies": {
+      "@types/bcrypt": "^5.0.2",
+      "@types/node": "^20.17.10",
+      "@types/react": "^19",
+      "@types/react-dom": "^19",
+      "ts-node": "10.9.1",
+      "typescript": "^5.7.2",
+      "vitest": "^3.0.4"
+   }
+}
