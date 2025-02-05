@@ -1,29 +1,26 @@
+import { describe, expect, test } from "vitest";
+import { getLevelOfPermissionById, getLevelOfPermissionByName } from "../../src/services/levelOfPermissionService";
 
+describe("LevelOfPermissionService Test", () => {
 
-import { beforeAll, afterAll, beforeEach, describe, expect, it } from "vitest";
+  test("getLevelOfPermissionById", async () => {
 
-import { Repository } from "typeorm";
-import User from "../../src/entity/User";
-import { TestDataSource } from "../../src/test-data-source";
-import testDatabase from "./testUtils";
+    expect(await getLevelOfPermissionById(1)).toHaveProperty("name", "none");
+    expect(await getLevelOfPermissionById(2)).toHaveProperty("name", "user");
+    expect(await getLevelOfPermissionById(3)).toHaveProperty("name", "own team");
+    expect(await getLevelOfPermissionById(4)).toHaveProperty("name", "any team");
+    expect(await getLevelOfPermissionById(5)).toHaveProperty("name", "any");
 
-let userRepository: Repository<User>;
-
-beforeAll(async () => {
-  await TestDataSource.initialize();
-  userRepository = TestDataSource.getRepository(User);
-});
-
-afterAll(async () => {
-  // await AppDataSource.destroy();
-});
-
-beforeEach(async () => {
-  // await userRepository.clear(); // Ensures each test starts fresh
-});
-
-describe("User Repository", () => {
-  it("should insert and retrieve a user", async () => {
-     await testDatabase();
   });
+
+  test("getLevelOfPermissionByName", async () => {
+
+    expect(await getLevelOfPermissionByName("none")).toHaveProperty("name", "none");
+    expect(await getLevelOfPermissionByName("user")).toHaveProperty("name", "user");
+    expect(await getLevelOfPermissionByName("own team")).toHaveProperty("name", "own team");
+    expect(await getLevelOfPermissionByName("any team")).toHaveProperty("name", "any team");
+    expect(await getLevelOfPermissionByName("any")).toHaveProperty("name", "any");
+
+  });
+
 });

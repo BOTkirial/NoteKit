@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { useApiMiddleware } from "../../../../services/api/apiMiddleware.js";
+import { useApiMiddleware } from "../../../../services/api/apiMiddleware";
 
 
 
