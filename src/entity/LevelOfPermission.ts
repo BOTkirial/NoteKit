@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import BaseEntity from "./BaseEntity.js";
+import BaseEntity from "./BaseEntity";
 
 @Entity()
 export default class LevelOfPermission extends BaseEntity {

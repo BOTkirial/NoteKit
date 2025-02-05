@@ -1,35 +1,18 @@
-import {test } from 'vitest'
-import { vi } from 'vitest';
-import testDatabase from './testUtils';
-import { getActionByName } from '../../src/services/actionService';
-import checkAuthentificationAndDatabase from '../../src/services/api/checkAuthentificationAndDatabase';
+import { describe, expect, test } from "vitest";
+import { getActionById, getActionByName } from "../../src/services/actionService";
 
-// vi.mock('../../src/services/api/checkAuthentificationAndDatabase', () => ({
-//   default: vi.fn(() => ({ /* mock implementation */ })),
-// }));
+describe("ActionService Test", () => {
 
-// vi.mock('typeorm');
-// vi.mock(  {
-//   checkAuthentificationAndDatabase: vi.fn()
-// });
+  test("getActionByName", async () => {
 
-test('test "getActionByName()"', async () => {
-  // await testDatabase();
+    expect(await getActionByName("Create a Note")).toHaveProperty("name", "Create a Note");
 
-  // const action = await getActionByName("")
+  });
 
-  // await checkAuthentificationAndDatabase();
+  test("getActionById", async () => {
 
-  // const typeorm = await import("typeorm");
-  // console.log(typeorm) 
-  // console.log(typeorm.CreateDateColumn) 
+    expect(await getActionById(1)).toHaveProperty("name", "Create a Note");
 
-  // try {
-  //   if(!AppDataSource.isInitialized)
-  //       await AppDataSource.initialize();
-  // } catch (error:any) {
-  //   console.info("An error occured when initializing database connection : " + error);
-  //   throw new Error("An error occured when initializing database connection : " + error)
-  // }
-  // expect(1+2).toBe(3)
-})
+  });
+
+});

@@ -1,4 +1,3 @@
-import path from "path"
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import User from "./entity/User"
@@ -23,7 +22,7 @@ export const TestDataSource = new DataSource({
         database: process.env.DB_NAME,
 
         synchronize: false,
-        logging: true,
+        logging: false,
         
         // entities: [ path.join(__dirname, '/entity/*') ],
         entities: [ AccessMatrix, Action, LevelOfPermission, Note, Role, Team, TeamNesting, TeamRole, User, UserRole, UserTeam ],
