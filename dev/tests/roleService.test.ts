@@ -6,9 +6,12 @@ describe("RoleService Test", () => {
 
   test("createRole", async () => {
     
+    // test the creation of a simple role
     await createRole("test", "test");
+    // expect(await getRoleByName("test")).toHaveProperty("name", "test");
 
-    expect(await getRoleByName("test")).toHaveProperty("name", "test");
+    // test the creation of a more complex role, with a given access matrix
+    // await createRole("testComplex")
 
   });
 

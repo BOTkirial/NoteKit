@@ -13,7 +13,7 @@
       "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts",
       "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/data-source.ts",
       "seed": "ts-node dev/seed/seed.ts",
-      "test": "vitest"
+      "test": "vitest run"
    },
    "dependencies": {
       "bcrypt": "^5.1.1",
