@@ -27,7 +27,7 @@ export const createRole = async (roleName: string, roleDescription?: string, tab
             return am;
         })
     }
-    saveWithTransaction([role, _tabAccessMatrix]);
+    saveWithTransaction([role, _tabAccessMatrix].filter(el => el !== undefined));
 }
 
 /**
