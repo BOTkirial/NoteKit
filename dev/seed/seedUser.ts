@@ -1,12 +1,10 @@
-import { AppDataSource } from "../../src/data-source";
+import DataSourceManager from "../../src/DataSourceManager";
 import User from "../../src/entity/User";
 
 const runUsers = async () => {
 
-    if (!AppDataSource.isInitialized)
-        await AppDataSource.initialize();
-
-    const count = await AppDataSource.manager.count(User);
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const count = await dataSource.manager.count(User);
     if (count > 0) {
         return;
     }
@@ -16,14 +14,14 @@ const runUsers = async () => {
         .setName("admin")
         .setPassword(process.env.DEFAULT_ADMIN_PASSWORD);
 
-    AppDataSource.manager.save(admin);
+    dataSource.manager.save(admin);
 
     // user
     const user = new User()
         .setName("user")
         .setPassword(process.env.DEFAULT_USER_PASSWORD);
 
-    AppDataSource.manager.save(user);
+    dataSource.manager.save(user);
 
 
 }

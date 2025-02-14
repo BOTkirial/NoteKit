@@ -1,6 +1,5 @@
-import { AppDataSource } from "../data-source";
+import DataSourceManager from "../DataSourceManager";
 import LevelOfPermission from "../entity/LevelOfPermission";
-import checkAuthentificationAndDatabase from "./api/checkAuthentificationAndDatabase";
 
 /**
  * Creates a new level of permission in the database
@@ -12,8 +11,8 @@ import checkAuthentificationAndDatabase from "./api/checkAuthentificationAndData
  * finds a level of permission in the database by it's id
  */
 export const getLevelOfPermissionById = async (lopId: number):Promise<LevelOfPermission> => {
-    await checkAuthentificationAndDatabase();
-    const lop = await AppDataSource.manager.findOneBy(LevelOfPermission,  { id: lopId } );
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const lop = await dataSource.manager.findOneBy(LevelOfPermission,  { id: lopId } );
     if(lop === null) {
         throw new Error("No LoP found in the database")
     }
@@ -24,8 +23,8 @@ export const getLevelOfPermissionById = async (lopId: number):Promise<LevelOfPer
  * finds a level of permission in the database by it's name
  */
 export const getLevelOfPermissionByName = async (lopName: string):Promise<LevelOfPermission> => {
-    await checkAuthentificationAndDatabase();
-    const lop = await AppDataSource.manager.findOneBy(LevelOfPermission,  { name: lopName } );
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const lop = await dataSource.manager.findOneBy(LevelOfPermission,  { name: lopName } );
     if(lop === null) {
         throw new Error("No LoP found in the database")
     }

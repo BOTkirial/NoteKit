@@ -1,12 +1,11 @@
-import { AppDataSource } from "../data-source";
+import DataSourceManager from "../DataSourceManager";
 import User from "../entity/User"
-import checkAuthentificationAndDatabase from "./api/checkAuthentificationAndDatabase";
 
 /**
  * Creates a user in the database
  */
 export const createUser = async (name: string, password: string, email?: string) => {
-    await checkAuthentificationAndDatabase();
+    const dataSource = await DataSourceManager.getQueryRunner();
     const user = new User();
     user.setName(name);
     user.setPassword(password)
@@ -14,7 +13,7 @@ export const createUser = async (name: string, password: string, email?: string)
         user.setEmail(email);
     }
     try {
-        await AppDataSource.manager.save(user);
+        await dataSource.manager.save(user);
     } catch (error) {
         throw new Error('An error occured when creating the user : ' + error);
     }
@@ -24,8 +23,8 @@ export const createUser = async (name: string, password: string, email?: string)
  * Find a user in the database by it's id
  */
 export const getUserById = async (userId: number): Promise<User> => {
-    await checkAuthentificationAndDatabase();
-    const user = await AppDataSource.manager.findOneBy(User,  { id: userId } );
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const user = await dataSource.manager.findOneBy(User,  { id: userId } );
     if(user === null) {
         throw new Error("No user found in the database")
     }
@@ -36,8 +35,8 @@ export const getUserById = async (userId: number): Promise<User> => {
  * Finds a user in the database by it's name
  */
 export const getUserByName = async (userName: string): Promise<User> => {
-    await checkAuthentificationAndDatabase();
-    const user = await AppDataSource.manager.findOneBy(User,  { name: userName } );
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const user = await dataSource.manager.findOneBy(User,  { name: userName } );
     if(user === null) {
         throw new Error("No user found in the database")
     }
@@ -48,10 +47,10 @@ export const getUserByName = async (userName: string): Promise<User> => {
  * Updates a user in the database
  */
 export const updateUser = async (user:User, updates: Partial<User>): Promise<User> => {
-    await checkAuthentificationAndDatabase();
+    const dataSource = await DataSourceManager.getQueryRunner();
     const newUser = {...user, ...updates};
     try {
-        await AppDataSource.manager.save(newUser);
+        await dataSource.manager.save(newUser);
     } catch (error) {
         throw new Error('An error occured when updating the user ' + user.getName() + ' : ' + error);
     }
@@ -62,6 +61,6 @@ export const updateUser = async (user:User, updates: Partial<User>): Promise<Use
  * Removes a user from the database
  */
 export const deleteUser = async (user:User): Promise<void> => {
-    await checkAuthentificationAndDatabase();
-    await AppDataSource.manager.remove(user);
+    const dataSource = await DataSourceManager.getQueryRunner();
+    await dataSource.manager.remove(user);
 }

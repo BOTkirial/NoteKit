@@ -1,4 +1,4 @@
-import { AppDataSource } from "../../src/data-source";
+import DataSourceManager from "../../src/DataSourceManager";
 import AccessMatrix from "../../src/entity/AccessMatrix";
 import Action from "../../src/entity/Action";
 import LevelOfPermission from "../../src/entity/LevelOfPermission";
@@ -6,48 +6,46 @@ import Role from "../../src/entity/Role";
 
 const runAccesMatrix = async () => {
 
-    if(!AppDataSource.isInitialized)
-        await AppDataSource.initialize();
-
-    const count = await AppDataSource.manager.count(AccessMatrix);
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const count = await dataSource.manager.count(AccessMatrix);
     if(count > 0) {
         return;
     }
 
     // admin
-    const roleAdmin = await AppDataSource.manager.findOne(Role, { where: {name: "administrator"} });
+    const roleAdmin = await dataSource.manager.findOne(Role, { where: {name: "administrator"} });
     if(!roleAdmin) {
         throw new Error("Role 'administrator' was not found in the database");
     }
 
-    const lopAny = await AppDataSource.manager.findOne(LevelOfPermission, {where: {name: "any"}});
+    const lopAny = await dataSource.manager.findOne(LevelOfPermission, {where: {name: "any"}});
     if(!lopAny) {
         throw new Error("Level Of Permission 'any' was not found in the database");
     }
 
-    const allActions = await AppDataSource.manager.find(Action);
+    const allActions = await dataSource.manager.find(Action);
     allActions.forEach(action => {
 
         const accessMatrix = new AccessMatrix();
         accessMatrix.setRole(roleAdmin);
         accessMatrix.setLevelOfPermission(lopAny);
         accessMatrix.setAction(action);
-        AppDataSource.manager.save(accessMatrix);
+        dataSource.manager.save(accessMatrix);
 
     });
 
     // user
-    const roleUser = await AppDataSource.manager.findOne(Role, { where: {name: "user"} });
+    const roleUser = await dataSource.manager.findOne(Role, { where: {name: "user"} });
     if(!roleUser) {
         throw new Error("Role 'user' was not found in the database");
     }
 
-    const lopUser = await AppDataSource.manager.findOne(LevelOfPermission, {where: {name: "user"}});
+    const lopUser = await dataSource.manager.findOne(LevelOfPermission, {where: {name: "user"}});
     if(!lopUser) {
         throw new Error("Level Of Permission 'user' was not found in the database");
     }
 
-    const actions = await AppDataSource.manager.find(Action, { where: [
+    const actions = await dataSource.manager.find(Action, { where: [
         { name: "Create a Note" },
         { name: "Read a Note" },
         { name: "Delete a Note" },
@@ -60,7 +58,7 @@ const runAccesMatrix = async () => {
         accessMatrix.setRole(roleUser);
         accessMatrix.setLevelOfPermission(lopUser);
         accessMatrix.setAction(action);
-        AppDataSource.manager.save(accessMatrix);
+        dataSource.manager.save(accessMatrix);
 
     })
 

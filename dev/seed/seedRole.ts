@@ -1,12 +1,10 @@
-import { AppDataSource } from "../../src/data-source";
+import DataSourceManager from "../../src/DataSourceManager";
 import Role from "../../src/entity/Role";
 
 const runRoles = async () => {
 
-    if(!AppDataSource.isInitialized)
-        await AppDataSource.initialize();
-
-    const count = await AppDataSource.manager.count(Role);
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const count = await dataSource.manager.count(Role);
     if(count > 0) {
         return;
     }
@@ -23,8 +21,8 @@ const runRoles = async () => {
     
     try {
         await Promise.all([
-            AppDataSource.manager.save(roleUser),
-            AppDataSource.manager.save(roleAdmin)
+            dataSource.manager.save(roleUser),
+            dataSource.manager.save(roleAdmin)
         ])
     } catch (error) {
         throw new Error('An error occured when creating the action : ' + error);

@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { useApiMiddleware } from "../../../services/api/apiMiddleware";
-import { AppDataSource } from "../../../data-source";
-import User from "../../../entity/User";
-import { createRole } from "../../../services/roleService";
 import { getUserLopAction, getUserRoles } from "../../../services/userRoleService";
 import { getUserByName } from "../../../services/userService";
 import { getActionById } from "../../../services/actionService";

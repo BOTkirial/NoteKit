@@ -1,12 +1,10 @@
-import { AppDataSource } from "../../src/data-source";
+import { QueryRunner } from "typeorm";
+import DataSourceManager from "../../src/DataSourceManager";
 import Action from "../../src/entity/Action";
 
-const runActions = async () => {
+const runActions = async (dataSource: QueryRunner) => {
     
-    if(!AppDataSource.isInitialized)
-        await AppDataSource.initialize();
-
-    const count = await AppDataSource.manager.count(Action);
+    const count = await dataSource.manager.count(Action);
     if(count > 0) {
         return;
     }
@@ -123,28 +121,28 @@ const runActions = async () => {
 
     try {
         await Promise.all([
-            AppDataSource.manager.save(createNote),
-            AppDataSource.manager.save(readNote),
-            AppDataSource.manager.save(editNote),
-            AppDataSource.manager.save(deleteNote),
-            AppDataSource.manager.save(createUser),
-            AppDataSource.manager.save(editUser),
-            AppDataSource.manager.save(deleteUser),
-            AppDataSource.manager.save(createTeam),
-            AppDataSource.manager.save(editTeam),
-            AppDataSource.manager.save(addTeamToTeam),
-            AppDataSource.manager.save(removeTeamFromTeam),
-            AppDataSource.manager.save(addUserToTeam),
-            AppDataSource.manager.save(removeUserFromTeam),
-            AppDataSource.manager.save(deleteTeam),
-            AppDataSource.manager.save(createRole),
-            AppDataSource.manager.save(editRole),
-            AppDataSource.manager.save(deleteRole),
-            AppDataSource.manager.save(manageRoleMatrix),
-            AppDataSource.manager.save(addRoleToUser),
-            AppDataSource.manager.save(addRoleToTeam),
-            AppDataSource.manager.save(removeRoleFromUser),
-            AppDataSource.manager.save(removeRoleFromTeam),
+            dataSource.manager.save(createNote),
+            dataSource.manager.save(readNote),
+            dataSource.manager.save(editNote),
+            dataSource.manager.save(deleteNote),
+            dataSource.manager.save(createUser),
+            dataSource.manager.save(editUser),
+            dataSource.manager.save(deleteUser),
+            dataSource.manager.save(createTeam),
+            dataSource.manager.save(editTeam),
+            dataSource.manager.save(addTeamToTeam),
+            dataSource.manager.save(removeTeamFromTeam),
+            dataSource.manager.save(addUserToTeam),
+            dataSource.manager.save(removeUserFromTeam),
+            dataSource.manager.save(deleteTeam),
+            dataSource.manager.save(createRole),
+            dataSource.manager.save(editRole),
+            dataSource.manager.save(deleteRole),
+            dataSource.manager.save(manageRoleMatrix),
+            dataSource.manager.save(addRoleToUser),
+            dataSource.manager.save(addRoleToTeam),
+            dataSource.manager.save(removeRoleFromUser),
+            dataSource.manager.save(removeRoleFromTeam),
         ])
     } catch (error) {
         throw new Error('An error occured when creating the action : ' + error);

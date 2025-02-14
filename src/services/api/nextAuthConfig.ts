@@ -8,8 +8,8 @@ import type {
 } from "next"
 import type { NextAuthOptions } from "next-auth"
 import { getServerSession } from "next-auth"
-import { AppDataSource } from "../../data-source";
 import User from "../../entity/User";
+import DataSourceManager from "../../DataSourceManager";
 
 // You'll need to import and pass this
 // to `NextAuth` in `app/api/auth/[...nextauth]/route.ts`
@@ -24,17 +24,10 @@ export const config = {
         password: { label: "Mot de passe", type: "password" }
       },
       async authorize(credentials) {
-
-        // initializes the database connection before any requests
-        try {
-          if (!AppDataSource.isInitialized)
-            await AppDataSource.initialize();
-        } catch (error: any) {
-          throw new Error("An error occured when initializing database connection")
-        }
+        const dataSource = await DataSourceManager.getQueryRunner();
 
         // Query to the database to check if the username is valid
-        const dbUser = await AppDataSource.manager.findOneBy(User, { name: credentials.username });
+        const dbUser = await dataSource.manager.findOneBy(User, { name: credentials.username });
 
         // If no user is registered to this username, the authentification fails
         if (!dbUser)
