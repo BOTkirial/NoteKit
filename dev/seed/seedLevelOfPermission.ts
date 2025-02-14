@@ -1,9 +1,8 @@
-import DataSourceManager from "../../src/DataSourceManager";
+import { QueryRunner } from "typeorm";
 import LevelOfPermission from "../../src/entity/LevelOfPermission";
 
-const runLevelOfPermissions = async () => {
+const runLevelOfPermissions = async (dataSource: QueryRunner) => {
 
-    const dataSource = await DataSourceManager.getQueryRunner();
     const count = await dataSource.manager.count(LevelOfPermission);
     if(count > 0) {
         return;

@@ -5,10 +5,10 @@ import { runSeeding } from '../seed/seed';
 
 beforeAll(async () => {
 
-  // await runSeeding();
+  await  DataSourceManager.startTransaction();
 
-  await DataSourceManager.startTransaction();
- 
+  await runSeeding(await DataSourceManager.getQueryRunner());
+
   // Uses the testDataSource instead of the appDataSource
   vi.mock("../../src/appDataSource", () => ({
     default: testDataSource,

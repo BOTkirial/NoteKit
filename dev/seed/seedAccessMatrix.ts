@@ -1,12 +1,12 @@
+import { QueryRunner } from "typeorm";
 import DataSourceManager from "../../src/DataSourceManager";
 import AccessMatrix from "../../src/entity/AccessMatrix";
 import Action from "../../src/entity/Action";
 import LevelOfPermission from "../../src/entity/LevelOfPermission";
 import Role from "../../src/entity/Role";
 
-const runAccesMatrix = async () => {
+const runAccesMatrix = async (dataSource: QueryRunner) => {
 
-    const dataSource = await DataSourceManager.getQueryRunner();
     const count = await dataSource.manager.count(AccessMatrix);
     if(count > 0) {
         return;
