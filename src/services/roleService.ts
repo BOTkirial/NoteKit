@@ -1,3 +1,4 @@
+import { access } from "fs"
 import DataSourceManager from "../DataSourceManager"
 import AccessMatrix from "../entity/AccessMatrix"
 import Action from "../entity/Action"
@@ -15,7 +16,7 @@ export const createRole = async (roleName: string, roleDescription?: string, tab
     role.setName(roleName);
     role.setDescription(roleDescription);
     // if an access matrix is provided
-    let _tabAccessMatrix: AccessMatrix[];
+    let _tabAccessMatrix: AccessMatrix[] = [];
     if(tabAccessMatrix !== undefined) {
         _tabAccessMatrix = tabAccessMatrix.map(el => {
             const am = new AccessMatrix();
@@ -25,7 +26,8 @@ export const createRole = async (roleName: string, roleDescription?: string, tab
             return am;
         })
     }
-    await dataSource.manager.save([role, _tabAccessMatrix].filter(el => el !== undefined));
+    const entities = [role, ..._tabAccessMatrix].filter(el => el !== undefined);
+    await dataSource.manager.save(entities);
 }
 
 /**
