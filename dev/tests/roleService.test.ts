@@ -21,7 +21,7 @@ describe("RoleService Test", () => {
 
   test("getRoleByName", async () => {
 
-    expect(await getRoleByName("admin")).toHaveProperty("name", "admin");
+    expect(await getRoleByName("administrator")).toHaveProperty("name", "administrator");
 
 
   });

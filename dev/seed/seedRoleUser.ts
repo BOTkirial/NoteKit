@@ -1,11 +1,11 @@
+import { QueryRunner } from "typeorm";
 import DataSourceManager from "../../src/DataSourceManager";
 import Role from "../../src/entity/Role";
 import User from "../../src/entity/User";
 import UserRole from "../../src/entity/UserRole";
 
-const runUserRoles = async () => {
+const runUserRoles = async (dataSource: QueryRunner) => {
 
-    const dataSource = await DataSourceManager.getQueryRunner();
     const count = await dataSource.manager.count(UserRole);
     if (count > 0) {
         return;

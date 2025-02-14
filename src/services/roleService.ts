@@ -3,7 +3,6 @@ import AccessMatrix from "../entity/AccessMatrix"
 import Action from "../entity/Action"
 import LevelOfPermission from "../entity/LevelOfPermission"
 import Role from "../entity/Role"
-import { saveWithTransaction } from "./api/typeOrmService"
 
 /**
  * Creates a role in the database
