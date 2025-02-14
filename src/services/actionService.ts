@@ -1,6 +1,5 @@
-import { AppDataSource } from "../data-source";
+import DataSourceManager from "../DataSourceManager";
 import Action from "../entity/Action";
-import checkAuthentificationAndDatabase from "./api/checkAuthentificationAndDatabase"
 
 
 /**
@@ -14,8 +13,8 @@ import checkAuthentificationAndDatabase from "./api/checkAuthentificationAndData
  * Finds an action in the database by it's name
  */
 export const getActionByName = async (actionName: string):Promise<Action> => {
-    await checkAuthentificationAndDatabase();
-    const action = await AppDataSource.manager.findOneBy(Action,  { name: actionName } );
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const action = await dataSource.manager.findOneBy(Action,  { name: actionName } );
     if(action === null) {
         throw new Error("No action found in the database")
     }
@@ -26,8 +25,8 @@ export const getActionByName = async (actionName: string):Promise<Action> => {
  * Finds an action in the database by it's id
  */
 export const getActionById = async (actionId: number):Promise<Action> => {
-    await checkAuthentificationAndDatabase();
-    const action = await AppDataSource.manager.findOneBy(Action,  { id: actionId } );
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const action = await dataSource.manager.findOneBy(Action,  { id: actionId } );
     if(action === null) {
         throw new Error("No action found in the database")
     }

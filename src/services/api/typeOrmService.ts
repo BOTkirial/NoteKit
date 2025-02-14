@@ -1,4 +1,4 @@
-import { AppDataSource } from "../../data-source";
+import DataSourceManager from "../../DataSourceManager";
 
 /**
  * Method to wrap the transaction logic
@@ -11,7 +11,8 @@ import { AppDataSource } from "../../data-source";
  */
 const saveWithTransaction = async (objectsToSave: any[]) => {
 
-    const queryRunner = AppDataSource.createQueryRunner();
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const queryRunner = dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
 

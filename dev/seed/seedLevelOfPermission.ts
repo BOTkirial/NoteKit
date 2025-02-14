@@ -1,12 +1,10 @@
-import { AppDataSource } from "../../src/data-source";
+import DataSourceManager from "../../src/DataSourceManager";
 import LevelOfPermission from "../../src/entity/LevelOfPermission";
 
 const runLevelOfPermissions = async () => {
 
-    if(!AppDataSource.isInitialized)
-        await AppDataSource.initialize();
-
-    const count = await AppDataSource.manager.count(LevelOfPermission);
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const count = await dataSource.manager.count(LevelOfPermission);
     if(count > 0) {
         return;
     }
@@ -43,11 +41,11 @@ const runLevelOfPermissions = async () => {
 
     try {
         await Promise.all([
-            AppDataSource.manager.save(lopNone),
-            AppDataSource.manager.save(lopUser),
-            AppDataSource.manager.save(lopOwnTeam),
-            AppDataSource.manager.save(lopAnyTeam),
-            AppDataSource.manager.save(lopAny)
+            dataSource.manager.save(lopNone),
+            dataSource.manager.save(lopUser),
+            dataSource.manager.save(lopOwnTeam),
+            dataSource.manager.save(lopAnyTeam),
+            dataSource.manager.save(lopAny)
         ])
     } catch (error) {
         throw new Error('An error occured when creating the level of permission : ' + error);
