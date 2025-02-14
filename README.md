@@ -81,14 +81,3 @@ Users inherit the roles of their Teams and all of their nested Teams.
 To start the project simply run the command : `docker compose --file ./dev/docker-compose-dev.yaml up` at the root of the project.
 The project is available at `http://localhost:3000/`
 Connection page is available at `http://localhost:3000/api/auth/signin`
-
-# Todo
-
-❌ middleware : remplacer useApiMiddleWare() par un middleware.ts pour le check de la connexion
-❌ test : Tester en mockant une transaction avant et après chaque test
-❌ test : Tester de lancer les tests séquentiellement
-❌ test : Tester avec une base in_memory
-
-❌
-✅
-
