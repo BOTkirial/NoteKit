@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { useApiMiddleware } from "../../../services/api/apiMiddleware";
+import { withApiMiddleware } from "../../../services/api/apiMiddleware";
 import { getUserLopAction, getUserRoles } from "../../../services/userRoleService";
 import { getUserByName } from "../../../services/userService";
 import { getActionById } from "../../../services/actionService";
 
-export const GET = useApiMiddleware(async (req:NextRequest) => {
+export const GET = withApiMiddleware(async (req:NextRequest) => {
 
     // const user = await AppDataSource.manager.find(User, { where: { name: "admin" } });
 

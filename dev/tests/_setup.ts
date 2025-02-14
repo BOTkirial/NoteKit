@@ -5,7 +5,7 @@ import { runSeeding } from '../seed/seed';
 
 beforeAll(async () => {
 
-  await  DataSourceManager.startTransaction();
+  // await DataSourceManager.startTransaction();
 
   await runSeeding(await DataSourceManager.getQueryRunner());
 
@@ -16,8 +16,8 @@ beforeAll(async () => {
   
 });
 
-afterAll(async ()=> {
-  await  DataSourceManager.rollbackTransaction();
-})
+// afterAll(async ()=> {
+  // await  DataSourceManager.rollbackTransaction();
+// })
 
 

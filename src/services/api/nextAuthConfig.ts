@@ -67,7 +67,7 @@ export const config = {
 } satisfies NextAuthOptions
 
 // Use it in server contexts
-export function useAuthentification(
+export function getSession(
   ...args:
     | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
     | [NextApiRequest, NextApiResponse]

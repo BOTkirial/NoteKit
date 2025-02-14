@@ -1,12 +1,12 @@
 import { NextRequest } from 'next/server';
-import { useAuthentification } from './nextAuthConfig';
+import { getSession } from './nextAuthConfig';
 
 /**
  * Custom route handler
  * Should be used with every API route
- * Used instead of middleware.ts because middleware.ts cannot handle typeorm initialization because of restrictions with Edge runtime
+ * Used instead of middleware.ts because middleware.ts doesn't support checking authentification via sessions with nextAuth
  */
-export const useApiMiddleware = (handler: (req: NextRequest) => void) => {
+export const withApiMiddleware = (handler: (req: NextRequest) => void) => {
     return async (req: NextRequest) => {
         await checkAuthentification();
         return handler(req);
@@ -18,7 +18,7 @@ export const useApiMiddleware = (handler: (req: NextRequest) => void) => {
  * Uses NextAuth
  */
 const checkAuthentification = async () => {
-    const session = await useAuthentification();
+    const session = await getSession();
     if(session === null) {
         console.info("Unauthorized");
         throw new Error("Unauthorized");
