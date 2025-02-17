@@ -4,6 +4,7 @@ import AccessMatrix from "../entity/AccessMatrix"
 import Action from "../entity/Action"
 import LevelOfPermission from "../entity/LevelOfPermission"
 import Role from "../entity/Role"
+import { UpdateResult } from "typeorm"
 
 /**
  * Creates a role in the database
@@ -57,15 +58,18 @@ export const getRoleById = async (roleId: number): Promise<Role> => {
 /**
  * Updates a role in the database
  */
-export const updateRole = async (role: Role, updates: Partial<Role>): Promise<Role> => {
+export const updateRoleById = async (roleId: number, updates: Partial<Role>): Promise<void> => {
     const dataSource = await DataSourceManager.getQueryRunner();
-    const newRole = {...role, ...updates};
     try {
-        await dataSource.manager.save(newRole);
+        const result: UpdateResult = await dataSource.manager.getRepository(Role).update(roleId, {
+            ...updates
+        });
+        if(result.affected === 0) {
+            throw new Error('No role found with id : ' + roleId + ' : ');
+        }
     } catch (error) {
-        throw new Error('An error occured when updating the role ' + role.getName() + ' : ' + error);
+        throw new Error('An error occured when updating the role : ' + roleId + ' : ' + error);
     }
-    return newRole as Role;
 }
 
 /**

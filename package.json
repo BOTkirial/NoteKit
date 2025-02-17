@@ -12,7 +12,7 @@
       "migration:generate": "npx typeorm-ts-node-commonjs migration:generate -d ./src/appDataSource.ts ./src/migration/migration",
       "migration:run": "npx typeorm-ts-node-commonjs migration:run -d ./src/appDataSource.ts",
       "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/appDataSource.ts",
-      "seed": "ts-node dev/seed/seed.ts",
+      "seed": "ts-node dev/seed/seedingScript.ts",
       "test": "vitest run"
    },
    "dependencies": {
