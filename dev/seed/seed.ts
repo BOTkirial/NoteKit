@@ -13,7 +13,6 @@ import Role from "../../src/entity/Role";
 import UserRole from "../../src/entity/UserRole";
 import AccessMatrix from "../../src/entity/AccessMatrix";
 
-
 export const runSeeding = async (dataSource?: QueryRunner) => {
     console.info("SEEDING START");
 
@@ -43,6 +42,5 @@ export const runSeeding = async (dataSource?: QueryRunner) => {
     console.info("Created " + countUserRoles + " user roles");
 
     console.info("SEEDING COMPLETE");
+    
 }
-
-// runSeeding();

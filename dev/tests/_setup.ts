@@ -1,11 +1,9 @@
-import { vi, beforeAll, afterAll } from 'vitest';
+import { vi, beforeAll, beforeEach, afterEach } from 'vitest';
 import testDataSource from '../../src/testDataSource';
 import DataSourceManager from '../../src/DataSourceManager';
 import { runSeeding } from '../seed/seed';
 
 beforeAll(async () => {
-
-  // await DataSourceManager.startTransaction();
 
   await runSeeding(await DataSourceManager.getQueryRunner());
 
@@ -13,11 +11,19 @@ beforeAll(async () => {
   vi.mock("../../src/appDataSource", () => ({
     default: testDataSource,
   }));
+
+  // stops the logging
+  vi.spyOn(console, 'info').mockImplementation(() => { });
+
   
 });
 
-// afterAll(async ()=> {
-  // await  DataSourceManager.rollbackTransaction();
-// })
+beforeEach(async () => {
+  await DataSourceManager.startTransaction();
+})
+
+afterEach(async ()=> {
+  await  DataSourceManager.rollbackTransaction();
+})
 
 
