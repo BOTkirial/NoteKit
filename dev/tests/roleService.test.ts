@@ -1,11 +1,9 @@
 import { describe, expect, test } from "vitest";
 import { getActionByName } from "../../src/services/actionService";
-import { createRole, deleteRole, getRoleById, getRoleByName, getRoleLopForAction, updateRoleById } from "../../src/services/roleService";
+import { createRole, deleteRole, getRoleById, getRoleByName, setRoleLopForAction, updateRoleById } from "../../src/services/roleService";
 import { getLevelOfPermissionByName } from "../../src/services/levelOfPermissionService";
 import DataSourceManager from "../../src/DataSourceManager";
 import AccessMatrix from "../../src/entity/AccessMatrix";
-import Action from "../../src/entity/Action";
-import Role from "../../src/entity/Role";
 
 describe("RoleService Test", () => {
 
@@ -62,13 +60,14 @@ describe("RoleService Test", () => {
   });
 
   test("setRoleLopForAction", async () => {
-
-
+    const action = await getActionByName("Edit a Team");
+    const lop = await getLevelOfPermissionByName("any");
+    const user = await getRoleByName("user");
+    await setRoleLopForAction(user, lop, action);
   });
 
   test("getRoleLopForAction", async () => {
-
-
+    expect(1+3).toEqual(3);
   });
 
 });
