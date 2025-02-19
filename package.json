@@ -16,6 +16,8 @@
       "test": "vitest run"
    },
    "dependencies": {
+      "@mantine/core": "^7.17.0",
+      "@mantine/hooks": "^7.17.0",
       "bcrypt": "^5.1.1",
       "next": "15.1.0",
       "next-auth": "^4.24.11",
