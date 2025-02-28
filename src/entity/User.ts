@@ -6,16 +6,16 @@ import BaseEntity from "./BaseEntity";
 export default class User extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column({ type: "varchar", length: 64, unique: true })
-    name: string;
+    name!: string;
 
     @Column({ type: "varchar", length: 64, nullable: true })
     email?: string;
 
     @Column({ type: "varchar", length: 64 })
-    password: string;
+    password!: string;
 
     getId(): number {
         return this.id;

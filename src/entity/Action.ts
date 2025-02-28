@@ -27,7 +27,7 @@ export default class Action extends BaseEntity {
         return this;
     }
 
-    getDescription(): string {
+    getDescription(): string | undefined {
         return this.description;
     }
 

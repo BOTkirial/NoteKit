@@ -1,0 +1,17 @@
+.component-button {
+
+    .component-button-content {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2px;
+
+        .component-button-content-icon {
+            margin-left: 10px;
+        }
+
+    }
+
+
+}

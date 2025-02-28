@@ -1,0 +1,39 @@
+"use client";
+
+import { Button as MantineButton, MantineColor } from "@mantine/core";
+import "./button.css";
+import { MouseEventHandler, ReactNode } from "react";
+
+interface PropsButton {
+    text: string;
+    color?: MantineColor;
+    icon?: ReactNode;
+    disabled?: boolean;
+    loading?: boolean;
+    variant?: "filled" | "light" | "outline" | "subtle";
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+}
+
+const Button = (props: PropsButton) => {
+
+    return (
+
+        <MantineButton
+            className="component-button"
+            loading={props.loading}
+            disabled={props.disabled}
+            variant={props.variant ?? "filled"}
+            onClick={props.onClick}
+            color={props.color}
+        >
+            <div className="component-button-content">
+                {props.text}
+                <span className="component-button-content-icon">{props.icon}</span>
+            </div>
+        </MantineButton>
+
+    )
+
+}
+
+export default Button;

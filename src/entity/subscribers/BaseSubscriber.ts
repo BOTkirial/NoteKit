@@ -17,7 +17,8 @@ export class BaseSubscriber implements EntitySubscriberInterface {
      */
     beforeUpdate(event: UpdateEvent<any>) {
         
-        event.entity.updatedBy = null;
+        if(event.entity)
+            event.entity.updatedBy = null;
 
     }
 

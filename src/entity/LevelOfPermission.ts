@@ -39,7 +39,7 @@ export default class LevelOfPermission extends BaseEntity {
         return this;
     }
 
-    getDescription(): string {
+    getDescription(): string | undefined {
         return this.description;
     }
 

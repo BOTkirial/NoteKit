@@ -5,16 +5,16 @@ import User from "./User";
 export default abstract class BaseEntity {
 
     @CreateDateColumn()
-    createdAt: Date;
+    createdAt!: Date;
  
     @UpdateDateColumn()
-    updatedAt: Date;
+    updatedAt!: Date;
 
     @ManyToOne("User")
-    createdBy: Relation<User>
+    createdBy!: Relation<User>
 
     @ManyToOne("User")
-    updatedBy: Relation<User>
+    updatedBy!: Relation<User>
 
     getCreatedAt(): Date {
         return this.createdAt;

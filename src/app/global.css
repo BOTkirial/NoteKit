@@ -14,10 +14,15 @@
     --mantine-primary-color-8: var(--mantine-color-blue-8);
     --mantine-primary-color-9: var(--mantine-color-blue-9);
 
-    --mantine-primary-color-filled: var(--mantine-color-blue-filled);
-    --mantine-primary-color-filled-hover: var(--mantine-color-blue-filled-hover);
+
     --mantine-primary-color-light: var(--mantine-color-blue-light);
     --mantine-primary-color-light-hover: var(--mantine-color-blue-light-hover);
     --mantine-primary-color-light-color: var(--mantine-color-blue-light-color);
+
+    /* the color of buttons (normal and hovered) */
+    --mantine-primary-color-filled: var(--mantine-color-blue-filled);
+    --mantine-primary-color-filled-hover: var(--mantine-color-blue-filled-hover);
     
+    --mantine-radius-default: 12px;
+
 }
