@@ -12,7 +12,7 @@ abstract class DataSourceManager {
         try {
             if(!appDataSource.isInitialized)
                 await appDataSource.initialize();
-        } catch (error:any) {
+        } catch (error:unknown) {
             console.info("An error occured when initializing database connection : " + error);
             throw new Error("An error occured when initializing database connection : " + error)
         }

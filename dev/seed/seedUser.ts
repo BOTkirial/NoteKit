@@ -1,5 +1,4 @@
 import { QueryRunner } from "typeorm";
-import DataSourceManager from "../../src/DataSourceManager";
 import User from "../../src/entity/User";
 
 const runUsers = async (dataSource: QueryRunner) => {
@@ -12,14 +11,14 @@ const runUsers = async (dataSource: QueryRunner) => {
     // admin
     const admin = new User()
         .setName("admin")
-        .setPassword(process.env.DEFAULT_ADMIN_PASSWORD);
+        .setPassword(process.env.DEFAULT_ADMIN_PASSWORD || "admin");
 
     await dataSource.manager.save(admin);
 
     // user
     const user = new User()
         .setName("user")
-        .setPassword(process.env.DEFAULT_USER_PASSWORD);
+        .setPassword(process.env.DEFAULT_USER_PASSWORD || "user");
 
     await dataSource.manager.save(user);
 

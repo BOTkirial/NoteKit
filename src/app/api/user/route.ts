@@ -1,21 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { withApiMiddleware } from "../../../services/api/apiMiddleware";
-import { getUserLopAction, getUserRoles } from "../../../services/userRoleService";
-import { getUserByName } from "../../../services/userService";
-import { getActionById } from "../../../services/actionService";
+import { getAllUsers } from "../../../services/userService";
 
-export const GET = withApiMiddleware(async (req:NextRequest) => {
 
-    // const user = await AppDataSource.manager.find(User, { where: { name: "admin" } });
+export const GET = withApiMiddleware(async () => {
 
-    const user = await getUserByName("admin");
-    // console.log(user)
-    const roles = await getUserRoles(user);
-    const action = await getActionById(1);
-
-    // createRole("tst role");
-    const result = await getUserLopAction(user, action);
-
-    return NextResponse.json({success: result}, { status: 200 });
+    const users = await getAllUsers();
+    return NextResponse.json({success: users}, { status: 200 });
 
 })

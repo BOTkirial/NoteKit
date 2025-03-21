@@ -11,19 +11,20 @@ import { getServerSession } from "next-auth"
 import User from "../../entity/User";
 import DataSourceManager from "../../DataSourceManager";
 
-// You'll need to import and pass this
-// to `NextAuth` in `app/api/auth/[...nextauth]/route.ts`
 export const config = {
   providers: [
     CredentialsProvider({
-      // the name of the authentification method
       name: 'Credentials',
-      // the fields presented for this authentification method
       credentials: {
-        username: { label: "Nom d'utilisateur", type: "text", placeholder: "Jane Doe" },
-        password: { label: "Mot de passe", type: "password" }
+        username: { label: "Username", type: "text", placeholder: "Jane Doe" },
+        password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
+
+        // If no credentials are provided, the authentification fails
+        if (!credentials)
+          return null;
+
         const dataSource = await DataSourceManager.getQueryRunner();
 
         // Query to the database to check if the username is valid

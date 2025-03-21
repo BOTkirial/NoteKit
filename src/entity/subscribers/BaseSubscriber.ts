@@ -1,4 +1,6 @@
 import { EntitySubscriberInterface, EventSubscriber, InsertEvent, UpdateEvent } from "typeorm";
+// import { getConnectedUser } from "../../services/userService";
+// import BaseEntity from "../BaseEntity";
 
 @EventSubscriber()
 export class BaseSubscriber implements EntitySubscriberInterface {
@@ -6,19 +8,22 @@ export class BaseSubscriber implements EntitySubscriberInterface {
     /**
      * Called before any entity is created in the database
      */
-    beforeInsert(event: InsertEvent<any>) {
+    async beforeInsert(event: InsertEvent<any>) {
 
-        event.entity.createdBy = null;
+        // const user = await getConnectedUser();
+        // if(user)
+        //     event.entity.createdBy = user;
         
     }
 
     /**
      * Called before any entity is updated in the database
      */
-    beforeUpdate(event: UpdateEvent<any>) {
+    async beforeUpdate(event: UpdateEvent<any>) {
         
-        if(event.entity)
-            event.entity.updatedBy = null;
+        // const user = await getConnectedUser();
+        // if(event.entity && user)
+        //     event.entity.updatedBy = user;
 
     }
 

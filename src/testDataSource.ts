@@ -1,16 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import AccessMatrix from "./entity/AccessMatrix";
-import Action from "./entity/Action";
-import LevelOfPermission from "./entity/LevelOfPermission";
-import Note from "./entity/Note";
-import Role from "./entity/Role";
-import Team from "./entity/Team";
-import TeamNesting from "./entity/TeamNesting";
-import TeamRole from "./entity/TeamRole";
 import User from "./entity/User";
-import UserRole from "./entity/UserRole";
-import UserTeam from "./entity/UserTeam";
 import { BaseSubscriber } from "./entity/subscribers/BaseSubscriber";
 
 /**
@@ -26,7 +16,7 @@ const testDataSource: DataSource = new DataSource({
     synchronize: true,
     logging: false,
 
-    entities: [AccessMatrix, Action, LevelOfPermission, Note, Role, Team, TeamNesting, TeamRole, User, UserRole, UserTeam],
+    entities: [User],
     subscribers: [BaseSubscriber],
 })
 

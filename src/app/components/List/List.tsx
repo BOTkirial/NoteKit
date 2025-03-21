@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, Flex, FlexProps } from "@mantine/core";
+import { CSSProperties, Flex } from "@mantine/core";
 import { ReactNode } from "react";
 import "./list.css";
 

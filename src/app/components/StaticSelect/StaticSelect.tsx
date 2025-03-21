@@ -1,4 +1,4 @@
-import { Loader, Select } from "@mantine/core";
+import { Select } from "@mantine/core";
 
 interface PropsStaticSelect {
   defaultValue?: string;

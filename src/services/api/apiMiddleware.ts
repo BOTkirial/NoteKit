@@ -6,10 +6,10 @@ import { getSession } from './nextAuthConfig';
  * Should be used with every API route
  * Used instead of middleware.ts because middleware.ts doesn't support checking authentification via sessions with nextAuth
  */
-export const withApiMiddleware = (handler: (req: NextRequest) => void) => {
-    return async (req: NextRequest) => {
+export const withApiMiddleware = (handler: (req: NextRequest, params: any) => void) => {
+    return async (req: NextRequest, params: any) => {
         await checkAuthentification();
-        return handler(req);
+        return handler(req, params?.params);
     };
 };
 

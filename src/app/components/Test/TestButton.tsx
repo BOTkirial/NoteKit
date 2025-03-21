@@ -2,6 +2,7 @@ import { SaveIcon } from "lucide-react"
 import Button from "../Button/Button"
 import { MantineColor } from "@mantine/core";
 import List from "../List/List";
+import { ReactNode } from "react";
 
 const TestButton = () => {
 
@@ -9,7 +10,7 @@ const TestButton = () => {
     const tabDisabledOptions: boolean[] = [true, false];
     const tabLoadingOptions: boolean[] = [true, false];
     const tabVariantOptions: ("filled" | "outline" | "light" | "subtle")[] = ["filled", "outline", "light", "subtle"];
-    const tabIconOptions: any[] = [undefined, <SaveIcon />];
+    const tabIconOptions: ReactNode[] = [undefined, <SaveIcon />];
     const tabColorOptions: MantineColor[] = ["blue", "green", "red", "gray"];
     const tabTextOptions: string[] = [
         "Enregistrer",
