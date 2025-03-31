@@ -1,5 +1,5 @@
-import DataSourceManager from "../DataSourceManager";
-import User from "../entity/User"
+import DataSourceManager from "../../DataSourceManager";
+import User from "../../entity/User"
 // import { getSession } from "./api/nextAuthConfig";
 
 /**

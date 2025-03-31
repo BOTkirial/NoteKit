@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { withApiMiddleware } from "../../../services/api/apiMiddleware";
-import { getAllUsers } from "../../../services/userService";
+import { withApiMiddleware } from "../../../services/authentification/apiMiddleware";
+import { getAllUsers } from "../../../services/api/userService";
 
 
 export const GET = withApiMiddleware(async () => {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { withApiMiddleware } from "../../../../services/api/apiMiddleware";
-import { getUserById } from "../../../../services/userService";
+import { withApiMiddleware } from "../../../../services/authentification/apiMiddleware";
+import { getUserById } from "../../../../services/api/userService";
 
 export const GET = withApiMiddleware(async (_req:NextRequest, params) => {
     const {id} = await params;
