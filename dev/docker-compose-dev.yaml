@@ -1,5 +1,5 @@
 services:
-  node:
+  next_js_poc_node:
     image: node:20-alpine
     container_name: nextjs
     env_file:
@@ -8,14 +8,14 @@ services:
       - ../:/app
     working_dir: /app
     depends_on:
-      - nextjsDB
+      - next_js_poc_db
     ports:
       - "3333:3000"
     command: >
       sh -c "npm install && npm run migration:run && npm run dev"
 
 
-  nextjsDB:
+  next_js_poc_db:
     image: postgres:17
     env_file:
       - ./.env
@@ -24,9 +24,9 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_DB: ${DB_NAME}
     volumes:
-      - nextjsDBV:/lib/postgresql/data
+      - next_js_poc_db_volume:/lib/postgresql/data
     ports:
       - 5432:5432
 
 volumes:
-  nextjsDBV:
+  next_js_poc_db_volume:
