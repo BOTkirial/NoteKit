@@ -1,6 +1,8 @@
 "use client";
 
-import TestButton from "./TestButton";
+
+
+
 
 const Test = () => {
 
@@ -8,7 +10,10 @@ const Test = () => {
 
         <div className="test-components">
 
-            <TestButton />
+            {/* <TestButton /> */}
+            {/* <TestList /> */}
+            {/* <TestToggle /> */}
+            <TestStaticSelect />
 
         </div>
     )

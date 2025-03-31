@@ -23,6 +23,6 @@
     --mantine-primary-color-filled: var(--mantine-color-blue-filled);
     --mantine-primary-color-filled-hover: var(--mantine-color-blue-filled-hover);
     
-    --mantine-radius-default: 12px;
+    --mantine-radius-default: 24px;
 
 }

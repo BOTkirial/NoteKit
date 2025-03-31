@@ -11,6 +11,7 @@ interface PropsList {
     yGap?: number;
     style?: CSSProperties;
     children: ReactNode;
+    className?: string;
 }
 
 const List = (props: PropsList) => {
@@ -22,8 +23,7 @@ const List = (props: PropsList) => {
 
     return (
         <Flex
-            className="component-list"
-            justify="flex-start"
+            className={["component-list", props.className ? props.className : ""].join(" ")}
             direction={direction === "vertical" ? "column" : "row"}
             wrap={behavior === "wrap" ? "wrap" : "nowrap"}
             style={{

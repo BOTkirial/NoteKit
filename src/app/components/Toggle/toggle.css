@@ -1,0 +1,17 @@
+.component-toggle {
+
+    cursor: help !important;
+
+    .mantine-Switch-label {
+        
+    }
+
+    .mantine-Switch-thumb > * {
+        position: absolute;
+        max-width: 90%;
+        max-height: 90%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

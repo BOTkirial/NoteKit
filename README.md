@@ -3,13 +3,13 @@
 - Start the project     ->  `docker compose --file ./dev/docker-compose-dev.yaml up`
 - Inside the container  ->  `npm run migration:run`
 - Inside the container  ->  `npm run seed`
-- Go to                 ->  `http://localhost:3000`
-- Signin page           ->  `http://localhost:3000/api/auth/signin`
+- Go to                 ->  `http://localhost:3333`
+- Signin page           ->  `http://localhost:3333/api/auth/signin`
 
 # API Examples
 
-- To query *ONE* user by it's id    -> `http://localhost:3000/api/user/1`
-- To query *ALL* users              -> `http://localhost:3000/api/user`
+- To query *ONE* user by it's id    -> `http://localhost:3333/api/user/1`
+- To query *ALL* users              -> `http://localhost:3333/api/user`
 
 # Technical Stack
 
