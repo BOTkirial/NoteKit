@@ -35,7 +35,7 @@ const StaticMultiSelect = (props: PropsStaticMultiSelect) => {
                 checkIconPosition="right"
                 dropdownOpened={withModal ? false : undefined}
                 defaultValue={props.defaultValue}
-                onClick={() => { if (withModal) { mobileSelectRef.current?.classList.add("open") } }}
+                onFocus={() => { if (withModal) { mobileSelectRef.current?.classList.add("open") } }}
                 data={props.data}
                 value={value as string[]}
                 onChange={(value) => { props.onChange ? props.onChange(value) : null; setValue(value) }}

@@ -26,7 +26,7 @@ const StaticSingleSelect = (props: PropsStaticSingleSelect) => {
                 checkIconPosition="right"
                 dropdownOpened={withModal ? false : undefined}
                 defaultValue={props.defaultValue}
-                onClick={() => { if (withModal) { mobileSelectRef.current?.classList.add("open"); } }}
+                onFocus={() => { if (withModal) { mobileSelectRef.current?.classList.add("open"); } }}
                 onChange={(value) => { props.onChange ? props.onChange(value) : null; setValue(value) }}
                 data={props.data}
                 value={value as string}

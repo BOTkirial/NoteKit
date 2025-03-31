@@ -41,6 +41,10 @@
                 .mantine-Radio-labelWrapper, .mantine-Checkbox-label {
                     font-size: 1.5em;
                 }
+
+                .mantine-Checkbox-input {
+                    border-radius: 5px;
+                }
     
             }
 
