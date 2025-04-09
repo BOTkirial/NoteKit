@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { getSession } from './nextAuthConfig';
+import { getToken } from "next-auth/jwt";
 
 /**
  * Custom route handler
@@ -8,7 +8,7 @@ import { getSession } from './nextAuthConfig';
  */
 export const withApiMiddleware = (handler: (req: NextRequest, params: any) => void) => {
     return async (req: NextRequest, params: any) => {
-        await checkAuthentification();
+        await checkAuthentification(req);
         return handler(req, params?.params);
     };
 };
@@ -17,9 +17,9 @@ export const withApiMiddleware = (handler: (req: NextRequest, params: any) => vo
  * Simple method that throws an error if the user isn't authenticated
  * Uses NextAuth
  */
-const checkAuthentification = async () => {
-    const session = await getSession();
-    if(session === null) {
+const checkAuthentification = async (request: NextRequest) => {
+    const token = await getToken({req: request })
+    if(token === null) {
         console.info("Unauthorized");
         throw new Error("Unauthorized");
     }

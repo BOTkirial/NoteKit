@@ -8,8 +8,9 @@ import type {
 } from "next"
 import type { NextAuthOptions } from "next-auth"
 import { getServerSession } from "next-auth"
-import User from "../../entity/User";
-import DataSourceManager from "../../DataSourceManager";
+import DataSourceManager from "src/DataSourceManager";
+import User from "@entity/User";
+
 
 export const config = {
   providers: [
@@ -63,8 +64,28 @@ export const config = {
         token.email = user.email;
       }
       return token;
-    }
+    },
+    async session({session, token}) {
+      session.user = {};
+      (session.user as any)["name"] = token.name;
+      (session.user as any)["id"] = token.id;
+      (session.user as any)["email"] = token.email;
+      console.log(session);
+      return session;
+    },
   },
+  cookies: {
+    sessionToken: {
+      name: "next-auth.session-token",
+      options: {
+        httpOnly: false,
+        secure: false,
+        sameSite: "Strict",
+        path: "/",
+        maxAge: 60 * 60 * 24
+      }
+    }
+  }
 } satisfies NextAuthOptions
 
 // Use it in server contexts
