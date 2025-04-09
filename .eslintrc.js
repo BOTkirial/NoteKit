@@ -3,6 +3,11 @@ const WARNING = 1;
 const ERROR = 2;
 
 module.exports = {
+  env: {
+    browser: true,
+    es6: true
+  },
+  parser: '@typescript-eslint/parser',
   "extends": [
     "next/core-web-vitals",
     "next/typescript"
