@@ -1,14 +1,15 @@
-import { Modal as MantineModal } from "@mantine/core"
+import { Drawer as MantineDrawer } from "@mantine/core"
 import { useState } from "react";
 import Button, { PropsButton } from "@component/Button/Button";
 import { MenuIcon } from "lucide-react";
 
-interface PropsModal {
+interface PropsDrawer {
+    position?: "right" | "left";
     title?: string;
     button?: Partial<PropsButton>;
 }
 
-const Modal = (props: PropsModal) => {
+const Drawer = (props: PropsDrawer) => {
 
     const buttonConfig:PropsButton = {
         color: props.button?.color ?? "blue",
@@ -23,10 +24,11 @@ const Modal = (props: PropsModal) => {
     const [open, setOpen] = useState<boolean>(false);
 
     return (
-        <div className="component-modal">
+        <div className="component-drawer">
             <Button {...buttonConfig} />
-            <MantineModal
+            <MantineDrawer
                 title={props.title}
+                position={props.position}
                 opened={open}
                 onClose={() => setOpen(false)}
             />
@@ -35,4 +37,4 @@ const Modal = (props: PropsModal) => {
 
 }
 
-export default Modal;
+export default Drawer;

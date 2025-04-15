@@ -4,7 +4,7 @@ import { Button as MantineButton, MantineColor } from "@mantine/core";
 import "./button.css";
 import { MouseEventHandler, ReactNode } from "react";
 
-interface PropsButton {
+export interface PropsButton {
     text?: string;
     color?: MantineColor;
     icon?: ReactNode;

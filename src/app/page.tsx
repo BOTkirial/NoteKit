@@ -1,10 +1,12 @@
-import API from "@services/client/API";
+import Test from "@component/Test/Test";
 
 export default function Home() {
 
-  API.Get("/user/").then(data => console.log(data));
-
   return (
-    <p>home</p>
+    <div className="main">
+      <p>home</p>
+      <Test/>
+    </div>
   );
+
 }

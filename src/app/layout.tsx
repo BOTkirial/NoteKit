@@ -1,8 +1,7 @@
+import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core';
 import React, { ReactNode } from "react";
 import '@mantine/core/styles.css';
-import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core';
 import "./global.css";
-import Test from "../components/Test/Test";
 
 export const metadata = {
   title: 'Next JS',
@@ -22,10 +21,6 @@ export default function RootLayout(props: PropsLayout) {
       <body>
         <MantineProvider>
           {props.children}
-
-          <Test />
-
-
         </MantineProvider>
       </body>
     </html>
