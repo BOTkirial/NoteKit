@@ -5,7 +5,7 @@ import "./button.css";
 import { MouseEventHandler, ReactNode } from "react";
 
 interface PropsButton {
-    text: string;
+    text?: string;
     color?: MantineColor;
     icon?: ReactNode;
     disabled?: boolean;
@@ -19,7 +19,7 @@ const Button = (props: PropsButton) => {
     return (
 
         <MantineButton
-            className="component-button"
+            className={["component-button", (props.text === "" || props.text === undefined) ? "round-button" : ""].join(" ")}
             loading={props.loading}
             disabled={props.disabled}
             variant={props.variant ?? "filled"}
