@@ -1,28 +1,40 @@
-
-
-
 :root {
 
-    --mantine-primary-color-0: var(--mantine-color-blue-0);
-    --mantine-primary-color-1: var(--mantine-color-blue-1);
-    --mantine-primary-color-2: var(--mantine-color-blue-2);
-    --mantine-primary-color-3: var(--mantine-color-blue-3);
-    --mantine-primary-color-4: var(--mantine-color-blue-4);
-    --mantine-primary-color-5: var(--mantine-color-blue-5);
-    --mantine-primary-color-6: var(--mantine-color-blue-6);
-    --mantine-primary-color-7: var(--mantine-color-blue-7);
-    --mantine-primary-color-8: var(--mantine-color-blue-8);
-    --mantine-primary-color-9: var(--mantine-color-blue-9);
+    --color-primary: var(--mantine-color-blue-0);
+    --color-primary-fade: var(--mantine-color-blue-9);
 
+    --color-secondary: var(--mantine-color-green-0);
+    --color-secondary-fade: var(--mantine-color-green-9);
 
-    --mantine-primary-color-light: var(--mantine-color-blue-light);
-    --mantine-primary-color-light-hover: var(--mantine-color-blue-light-hover);
-    --mantine-primary-color-light-color: var(--mantine-color-blue-light-color);
+    --color-error: var(--mantine-color-red-0);
+    --color-error-fade: var(--mantine-color-red-9);
 
-    /* the color of buttons (normal and hovered) */
-    --mantine-primary-color-filled: var(--mantine-color-blue-filled);
-    --mantine-primary-color-filled-hover: var(--mantine-color-blue-filled-hover);
-    
-    --mantine-radius-default: 24px;
+    --color-background-light: var(--mantine-color-red-9);
+    --color-background-light-fade: var(--mantine-color-red-9);
 
+    --color-background-dark: var(--mantine-color-red-9);
+    --color-background-dark-fade: var(--mantine-color-red-9);
+
+    --color-text-light: var(--mantine-color-red-9);
+    --color-text-dark: var(--mantine-color-red-9);
+
+    --border-radius: 48px;
+
+    --font-size-xs: 12px;
+    --font-size-sm: 16px;
+    --font-size-md: 20px;
+    --font-size-lg: 24px;
+    --font-size-xl: 28px;
+
+    --margin-1: 6px;
+    --margin-2: 12px;
+    --margin-3: 18px;
+    --margin-4: 24px;
+    --margin-5: 30px;
+    --margin-6: 36px;
+
+}
+
+html[data-mantine-color-scheme="dark"] {
+    color: red !important;
 }

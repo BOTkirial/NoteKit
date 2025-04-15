@@ -10,7 +10,7 @@ services:
     depends_on:
       - next_js_poc_db
     ports:
-      - "3000:3000"
+      - "3200:3000"
     command: >
       sh -c "npm install && npm run migration:run && npm run dev"
 

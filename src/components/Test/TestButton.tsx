@@ -14,6 +14,7 @@ const TestButton = () => {
     const tabColorOptions: MantineColor[] = ["blue", "green", "red", "gray"];
     const tabTextOptions: string[] = [
         "Enregistrer",
+        "",
         "Ajouter cet article au panier"
     ];
 
@@ -49,7 +50,6 @@ const TestButton = () => {
                         )
                     )
                 }
-
 
             </List>
 

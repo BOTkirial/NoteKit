@@ -27,7 +27,7 @@ const List = (props: PropsList) => {
             direction={direction === "vertical" ? "column" : "row"}
             wrap={behavior === "wrap" ? "wrap" : "nowrap"}
             style={{
-                overflow: behavior === "wrap" ? "auto" : "scroll",
+                overflow: behavior === "wrap" ? "visible" : "scroll",
                 paddingBottom: behavior === "scroll" ? 10 : "auto",
                 whiteSpace: "nowrap",
                 ...props.style

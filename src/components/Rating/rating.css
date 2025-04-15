@@ -1,0 +1,11 @@
+.component-rating {
+
+    .component-rating-symbol {
+
+        &.empty {
+            filter: grayscale(1);
+        }
+
+    }
+
+}
