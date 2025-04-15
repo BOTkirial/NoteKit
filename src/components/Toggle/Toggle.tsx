@@ -14,7 +14,6 @@ interface PropsToggle {
     onIcon?: ReactNode;
     offIcon?: ReactNode;
     onColor?: MantineColor;
-    size?: MantineSize;
 }
 
 const Toggle = (props: PropsToggle) => {
@@ -48,13 +47,13 @@ const Toggle = (props: PropsToggle) => {
 
     return (
         <Switch
-            size={props.size}
             className={["component-toggle", props.disabled ? "disabled" : ""].join(" ")}
             disabled={props.disabled}
             checked={value}
             onChange={onChange}
             label={getLabel()}
             color={props.onColor ?? "blue"}
+            size="md"
             thumbIcon={
                 value ? (
                   props.onIcon
