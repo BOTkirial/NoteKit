@@ -52,6 +52,9 @@ export const config = {
       },
     })
   ],
+  pages: {
+    signIn: "/signin"
+  },
   session: {
     strategy: "jwt",
   },

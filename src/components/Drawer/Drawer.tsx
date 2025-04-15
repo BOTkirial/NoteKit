@@ -1,5 +1,5 @@
 import { Drawer as MantineDrawer } from "@mantine/core"
-import { useState } from "react";
+import { forwardRef, ReactNode, useImperativeHandle, useState } from "react";
 import Button, { PropsButton } from "@component/Button/Button";
 import { MenuIcon } from "lucide-react";
 
@@ -7,9 +7,20 @@ interface PropsDrawer {
     position?: "right" | "left";
     title?: string;
     button?: Partial<PropsButton>;
+    children: ReactNode;
 }
 
-const Drawer = (props: PropsDrawer) => {
+export interface DrawerRef {
+    open: () => void;
+    close: () => void;
+}
+
+const Drawer = forwardRef<DrawerRef, PropsDrawer>((props: PropsDrawer, ref) => {
+
+    useImperativeHandle(ref, () => ({
+        open: () => setOpen(true),
+        close: () => setOpen(false)
+    }));
 
     const buttonConfig:PropsButton = {
         color: props.button?.color ?? "blue",
@@ -31,10 +42,12 @@ const Drawer = (props: PropsDrawer) => {
                 position={props.position}
                 opened={open}
                 onClose={() => setOpen(false)}
-            />
+            >
+                {props.children}
+            </MantineDrawer>
         </div>
     )
 
-}
+})
 
 export default Drawer;

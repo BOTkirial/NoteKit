@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from "next-auth/jwt";
 
 /**
@@ -8,7 +8,11 @@ import { getToken } from "next-auth/jwt";
  */
 export const withApiMiddleware = (handler: (req: NextRequest, params: any) => void) => {
     return async (req: NextRequest, params: any) => {
-        await checkAuthentification(req);
+        try {
+            await checkAuthentification(req);
+        } catch(e) {
+            return NextResponse.json({message: "Unauthorized"}, { status: 401 });
+        }
         return handler(req, params?.params);
     };
 };

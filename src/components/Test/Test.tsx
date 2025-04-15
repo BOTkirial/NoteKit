@@ -20,15 +20,15 @@ const Test = () => {
 
         <div className="test-components">
 
-            <TestModal />
-            <TestDrawer />
-            <TestNumberInput />
-            <TestRating />
-            <TestTextInput />
-            <TestButton />
-            <TestList />
-            <TestToggle />
-            <TestStaticSelect />
+            {/* <TestModal /> */}
+            {/* <TestDrawer /> */}
+            {/* <TestNumberInput /> */}
+            {/* <TestRating /> */}
+            {/* <TestTextInput /> */}
+            {/* <TestButton /> */}
+            {/* <TestList /> */}
+            {/* <TestToggle /> */}
+            {/* <TestStaticSelect /> */}
 
 
         </div>

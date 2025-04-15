@@ -26,7 +26,6 @@ const Modal = (props: PropsModal) => {
         <div className="component-modal">
             <Button {...buttonConfig} />
             <MantineModal
-                title={props.title}
                 opened={open}
                 onClose={() => setOpen(false)}
             />

@@ -1,12 +1,17 @@
-import Test from "@component/Test/Test";
 
-export default function Home() {
+const Home = () => {
+
+  const tabNotes = [
+    {  }
+  ]
 
   return (
     <div className="main">
-      <p>home</p>
-      <Test/>
+        <h1>Favoris</h1>
+        <h1>Notes</h1>
     </div>
   );
 
 }
+
+export default Home;

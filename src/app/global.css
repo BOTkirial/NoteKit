@@ -1,22 +1,22 @@
 :root {
 
-    --color-primary: var(--mantine-color-blue-0);
-    --color-primary-fade: var(--mantine-color-blue-9);
+    --color-primary: #fedc34;
+    --color-primary-fade: #feea85;
 
-    --color-secondary: var(--mantine-color-green-0);
-    --color-secondary-fade: var(--mantine-color-green-9);
+    --color-success: #4CAF50;
+    --color-success-fade: #94cf96;
 
-    --color-error: var(--mantine-color-red-0);
-    --color-error-fade: var(--mantine-color-red-9);
+    --color-error: #F44336;
+    --color-error-fade: #f88e86;
 
-    --color-background-light: var(--mantine-color-red-9);
-    --color-background-light-fade: var(--mantine-color-red-9);
+    --color-background-light: #ffffff;
+    --color-background-light-fade: #f2f2f2;
 
-    --color-background-dark: var(--mantine-color-red-9);
-    --color-background-dark-fade: var(--mantine-color-red-9);
+    --color-background-dark: #565656;
+    --color-background-dark-fade: #3c3c3c;
 
-    --color-text-light: var(--mantine-color-red-9);
-    --color-text-dark: var(--mantine-color-red-9);
+    --color-text-light: var(--color-background-dark-fade);
+    --color-text-dark: var(--color-background-light-fade);
 
     --border-radius: 48px;
 
@@ -35,6 +35,21 @@
 
 }
 
-html[data-mantine-color-scheme="dark"] {
-    color: red !important;
+html {
+
+    --background: var(--color-background-light);
+    --background-fade: var(--color-background-light-fade);
+    --text-color: var(--color-text-light);
+
+    &[data-mantine-color-scheme="dark"] {
+        --background: var(--color-background-dark);
+        --background-fade: var(--color-background-dark-fade);
+        --text-color: var(--color-text-dark);
+    }
+
+    body {
+        background-color: var(--background);
+    }
+
 }
+

@@ -2,6 +2,7 @@ import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/c
 import React, { ReactNode } from "react";
 import '@mantine/core/styles.css';
 import "./global.css";
+import Header from '@appComponents/FloatingMenu/Header';
 
 export const metadata = {
   title: 'Next JS',
@@ -20,7 +21,13 @@ export default function RootLayout(props: PropsLayout) {
       </head>
       <body>
         <MantineProvider>
-          {props.children}
+          <Header />
+          <div className="body">
+            {props.children}
+          </div>
+          <div className="footer">
+
+          </div>
         </MantineProvider>
       </body>
     </html>
