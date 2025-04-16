@@ -1,5 +1,5 @@
+import { createUser, getUserByName } from '@services/api/user.service';
 import { describe, expect, test } from 'vitest'
-import { createUser, getUserByName } from '../../src/services/api/userService';
 
 describe("UserService test", () => {
 

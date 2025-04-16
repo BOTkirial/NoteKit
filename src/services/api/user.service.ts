@@ -1,6 +1,6 @@
-import DataSourceManager from "../../DataSourceManager";
-import User from "../../entity/User"
-// import { getSession } from "./api/nextAuthConfig";
+import User from "@entity/User";
+import DataSourceManager from "src/DataSourceManager";
+
 
 /**
  * Creates a user in the database
@@ -65,26 +65,3 @@ export const deleteUser = async (user:User): Promise<void> => {
     const dataSource = await DataSourceManager.getQueryRunner();
     await dataSource.manager.remove(user);
 }
-
-/**
- * Find all users in the database
- */
-export const getAllUsers = async (): Promise<Array<User>> => {
-    const dataSource = await DataSourceManager.getQueryRunner();
-    const users = await dataSource.manager.find(User);
-    if(users === null) {
-        throw new Error("No user found in the database")
-    }
-    return users;
-}
-
-// /**
-//  * Method to find the currently connected user's entity
-//  */
-// export const getConnectedUser = async (): Promise<User | null> => {
-//     const session = await getSession();
-//     const userName = session?.user?.name;
-//     if(!userName) return null;
-//     const user = getUserByName(userName);
-//     return user;
-// }
