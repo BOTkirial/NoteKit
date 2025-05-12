@@ -44,23 +44,26 @@ class API {
 
 
 
-    private  static fetchWrapper = async ( options: GetInterface | PostInterface | DeleteInterface | PatchInterface ): Promise<object> => {
+    private  static fetchWrapper = async<T> ( options: GetInterface | PostInterface | DeleteInterface | PatchInterface ): Promise<T> => {
         
         if(!isValidApiRoute(options.apiRoute))
             throw new Error(`Route "${options.apiRoute}" is not valid`)
 
         const url = new URL(API_URL + options.apiRoute);
-        if (options.parameters && typeof options.parameters === "object") {
-            Object.keys(options.parameters).forEach(key => {
+        if (options.parameters && typeof options.parameters === "object" && ["GET"].includes(options.method)) {
+          console.log("aqui")  
+          Object.keys(options.parameters).forEach(key => {
                 url.searchParams.set(key, (options.parameters as any)[key]);
             })
         }
 
         let finalUrl = url.toString();
 
-        if (options.parameters && Number.isInteger(options.parameters)) {
+        if (options.parameters && Number.isInteger(options.parameters) && ["DELETE"].includes(options.method)) {
             finalUrl += options.parameters;
         }
+        
+        console.log("finalUrl", finalUrl)
 
         const response = await fetch(finalUrl, {
             method: options.method,
@@ -101,7 +104,7 @@ class API {
 
     }
 
-    public static Post = async (route: string, parameters: { [key: string]: string; }):Promise<object> => {
+    public static Post = async<T> (route: string, parameters: { [key: string]: string; }):Promise<T> => {
        
         return await API.fetchWrapper({apiRoute: route, method: "POST", parameters: parameters});
 

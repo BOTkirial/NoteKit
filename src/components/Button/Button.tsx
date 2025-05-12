@@ -12,6 +12,7 @@ export interface PropsButton {
     loading?: boolean;
     variant?: "filled" | "light" | "outline" | "subtle";
     onClick?: MouseEventHandler<HTMLButtonElement>;
+    type?: "button" | "submit";
 }
 
 const Button = (props: PropsButton) => {
@@ -25,6 +26,7 @@ const Button = (props: PropsButton) => {
             variant={props.variant ?? "filled"}
             onClick={props.onClick}
             color={props.color}
+            type={props.type ?? "button"}
         >
             <div className="component-button-content">
                 {props.text}

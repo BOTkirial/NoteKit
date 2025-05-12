@@ -73,7 +73,6 @@ export const config = {
       (session.user as any)["name"] = token.name;
       (session.user as any)["id"] = token.id;
       (session.user as any)["email"] = token.email;
-      console.log(session);
       return session;
     },
   },

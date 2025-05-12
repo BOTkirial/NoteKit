@@ -25,7 +25,9 @@ const Header = () => {
                         <Button onClick={() => { signOut(); drawerRef.current?.close() }} text="Déconnexion" icon={<LogOutIcon />} />
                     </List>
                 </Drawer>
-                <Modal button={{ icon: <SearchIcon /> }} />
+                <Modal button={{ icon: <SearchIcon /> }}>
+                  boop
+                </Modal>
             </List>
         </div>
     )

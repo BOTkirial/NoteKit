@@ -1,5 +1,7 @@
 import User from "@entity/User";
+import { getServerSession } from "next-auth";
 import DataSourceManager from "src/DataSourceManager";
+import { getSession } from "./authentification/nextAuthConfig";
 
 
 /**
@@ -64,4 +66,29 @@ export const updateUser = async (user:User, updates: Partial<User>): Promise<Use
 export const deleteUser = async (user:User): Promise<void> => {
     const dataSource = await DataSourceManager.getQueryRunner();
     await dataSource.manager.remove(user);
+}
+
+/**
+ * Retrieve all the users in the database
+ */
+export const getAllUsers = async (): Promise<Array<User>> => {
+    const dataSource = await DataSourceManager.getQueryRunner();
+    const tabUsers = await dataSource.manager.find(User);
+    if(tabUsers === null) {
+        throw new Error("No users found in the database")
+    }
+    return tabUsers;
+}
+
+export const getCurrentUser = async(): Promise<User> => {
+
+  const userSession = await getSession();
+
+  if(!userSession) {
+    throw new Error("Unauthenticated");
+  }
+
+  const user = await getUserById((userSession.user as any).id);
+  return user;
+
 }

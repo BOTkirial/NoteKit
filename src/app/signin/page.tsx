@@ -2,14 +2,15 @@
 
 import Button from "@component/Button/Button";
 import API from "@services/client/API";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 const SignIn = () => {
     return (
         <div className="sign-in">
             <h1>SignIn</h1>
             <Button text="Connexion" onClick={() => signIn("credentials", { username: "admin", password: "admin" })} />
-            <Button text="test" onClick={() =>  API.Get("/user") } />
+            <Button text="Déconnexion" onClick={() => signOut()} />
+            <Button text="query /user" onClick={() =>  API.Get("/user") } />
         </div>
     )
 }

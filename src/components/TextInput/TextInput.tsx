@@ -1,6 +1,6 @@
 import { TextInput as MantineTextInput } from "@mantine/core"
 import { XIcon } from "lucide-react";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 
 interface PropsTextInput {
     multiline?: boolean;
@@ -11,6 +11,8 @@ interface PropsTextInput {
     onChangeTimeOut?: number;
     defaultValue?: string;
     placeHolder?: string;
+    label?: string;
+    error?: string;
 }
 
 const TextInput = (props: PropsTextInput) => {
@@ -18,7 +20,6 @@ const TextInput = (props: PropsTextInput) => {
     const [tabTimeOut, setTabTimeOut] = useState<number[]>([]);
     const [value, setValue] = useState<string>(props.defaultValue ?? "")
     const timeout = props.onChangeTimeOut ?? 300;
-
 
     const localOnChange = (value: string) => {
 
@@ -35,7 +36,9 @@ const TextInput = (props: PropsTextInput) => {
     }
 
     return (
-        <MantineTextInput 
+        <MantineTextInput
+            error={props.error}
+            label={props.label}
             onChange={(e) => localOnChange(e.currentTarget.value)}
             placeholder={props.placeHolder}
             value={value}
