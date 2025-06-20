@@ -14,7 +14,7 @@ abstract class DataSourceManager {
                 await appDataSource.initialize();
         } catch (error:unknown) {
             console.info("An error occured when initializing database connection : " + error);
-            throw new Error("An error occured when initializing database connection : " + error)
+            throw new Error("An error occured when initializing database connection : " + error);
         }
 
         // creates a queryRunner if not created already

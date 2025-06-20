@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import User from "./User";
 import BaseEntity from "./BaseEntity";
 
@@ -13,16 +13,19 @@ export default class Note extends BaseEntity {
 
     @Column({ type: "varchar", length: 128, unique: false })
     title!: string;
+
+    @Column({ type: "text", unique: false, nullable: true })
+    content!: string;
     
     @Column({ type: "boolean" })
-    isFavorite: boolean;
+    isPublic: boolean;
     
     @Column({ type: "varchar", length: 256, unique: false, nullable: true })
     excerpt?: string;
 
     constructor() {
         super();
-        this.isFavorite = false;
+        this.isPublic = false;
     }
 
     getOwner(): User {
@@ -43,12 +46,12 @@ export default class Note extends BaseEntity {
         return this;
     }
 
-    getFavorite(): boolean {
-        return this.isFavorite;
+    getPublic(): boolean {
+        return this.isPublic;
     }
 
-    setFavorite(value: boolean): Note {
-        this.isFavorite = value;
+    setPublic(value: boolean): Note {
+        this.isPublic = value;
         return this;
     }
 
@@ -58,6 +61,15 @@ export default class Note extends BaseEntity {
 
     setExcerpt(excerpt: string): Note {
         this.excerpt = excerpt;
+        return this;
+    }
+
+    getContent(): string {
+        return this.content;
+    }
+
+    setContent(content: string): Note {
+        this.content = content;
         return this;
     }
 

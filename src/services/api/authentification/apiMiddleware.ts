@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from "next-auth/jwt";
 
+// load this file to apply the monkey patch on typeORM queryBuilder
+import "../api.service";
+
 /**
  * Custom route handler
  * Should be used with every API route

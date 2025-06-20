@@ -2,7 +2,7 @@ import Button from "@component/Button/Button";
 import TextInput from "@component/TextInput/TextInput";
 import { SaveIcon } from "lucide-react";
 import { useForm } from "@mantine/form";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import QueryClientProviderWrapper from "@appComponents/QueryClientProviderWrapper/QueryClientProviderWrapper";
 import Notification from "@services/client/Notification";
 import NoteRequest from "src/requests/note.request";
@@ -19,16 +19,16 @@ const BasicFormNewNote = (props: PropsFormNewNote) => {
       title: "",
     },
     validate: {
-      title: (value) =>
-        value === "" || value === undefined
-          ? "La valeur ne peut être dada"
-          : false,
+      title: (value) => value === "" || value === undefined ? "La valeur ne peut être dada" : false,
     },
   });
 
+  const queryClient = useQueryClient();
+
   const newNoteMutation = useMutation({
-    mutationFn: NoteRequest.Post,
+    mutationFn: NoteRequest.Create,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
       Notification.Success("Note créée");
       props.onSuccess ? props.onSuccess() : null;
     },
@@ -57,7 +57,7 @@ const BasicFormNewNote = (props: PropsFormNewNote) => {
 };
 
 /**
- * Necessary to wrap the form with a queryClientProvider in order to have access to useMutation or useQuery
+ * Necessary to wrap the component with a queryClientProvider in order to have access to useMutation or useQuery
  * This allows to not wrap the entire app in a QueryClientProvider because we would lose the SSR from next
  */
 export default function FormNewNote(props: PropsFormNewNote) {

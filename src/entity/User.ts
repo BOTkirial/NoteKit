@@ -1,6 +1,7 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
 import BaseEntity from "./BaseEntity";
+import Note from "./Note";
 
 @Entity()
 export default class User extends BaseEntity {

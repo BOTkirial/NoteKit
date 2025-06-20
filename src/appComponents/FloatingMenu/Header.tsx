@@ -1,6 +1,6 @@
 "use client";
 
-import { CogIcon, LayoutGridIcon, LogOutIcon, MenuIcon, SearchIcon } from "lucide-react";
+import { CogIcon, FileIcon, LayoutGridIcon, LogInIcon, LogOutIcon, MenuIcon, SearchIcon, UserIcon } from "lucide-react";
 import Drawer, { DrawerRef } from "@component/Drawer/Drawer";
 import Button from "@component/Button/Button";
 import { useRouter } from "next/navigation";
@@ -20,9 +20,10 @@ const Header = () => {
             <List>
                 <Drawer ref={drawerRef} title='NoteKit' button={{ icon: <MenuIcon /> }}>
                     <List direction="vertical">
-                        <Button onClick={() => { router.push("/"); drawerRef.current?.close() }} text="Accueil" icon={<LayoutGridIcon />} />
-                        <Button onClick={() => { router.push("/settings"); drawerRef.current?.close() }} text="Paramètres" icon={<CogIcon />} />
-                        <Button onClick={() => { signOut(); drawerRef.current?.close() }} text="Déconnexion" icon={<LogOutIcon />} />
+                        <Button onClick={() => { router.push("/notes"); drawerRef.current?.close() }} text="Mes notes" icon={<LayoutGridIcon />} />
+                        <Button onClick={() => { router.push("/account"); drawerRef.current?.close() }} text="Mon compte" icon={<UserIcon />} />
+                        <Button onClick={() => { router.push("/contentTypes"); drawerRef.current?.close() }} text="Types de contenu" icon={<FileIcon />} />
+                        <Button onClick={() => { signOut({callbackUrl: "/"}); drawerRef.current?.close() }} text="Déconnexion" icon={<LogOutIcon />} />
                     </List>
                 </Drawer>
                 <Modal button={{ icon: <SearchIcon /> }}>

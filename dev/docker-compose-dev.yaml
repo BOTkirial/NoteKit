@@ -25,8 +25,8 @@ services:
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - next_js_poc_db_volume:/lib/postgresql/data
-    ports:
-      - 5432:5432
+    # ports:
+    #   - 5432:5432
 
 volumes:
   next_js_poc_db_volume:

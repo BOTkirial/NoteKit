@@ -2,6 +2,7 @@ import { Checkbox, CheckboxGroup, Divider, MultiSelect, RadioGroup } from "@mant
 import { useRef, useState } from "react";
 import List from "../List/List";
 import Button from "../Button/Button";
+import { createPortal } from "react-dom";
 
 interface PropsStaticMultiSelect {
     data: { value: string, label: string }[];
@@ -21,7 +22,7 @@ const StaticMultiSelect = (props: PropsStaticMultiSelect) => {
 
     const handleMobileSelect = (value: string) => {
         const isAlreadySelected = tempValue.includes(value);
-        if(isAlreadySelected) {
+        if (isAlreadySelected) {
             setTempValue(() => tempValue.filter(el => el !== value));
         } else {
             setTempValue(() => [...tempValue, value]);
@@ -45,23 +46,25 @@ const StaticMultiSelect = (props: PropsStaticMultiSelect) => {
                 nothingFoundMessage={props.nothingFoundMessage || "Nothing found"}
                 onClear={() => setTempValue([])}
             />
-             <div ref={mobileSelectRef} className="mobile-multiple-select-background">
+            {createPortal(<div ref={mobileSelectRef} className="mobile-multiple-select-background">
                 <div className="mobile-multiple-select">
                     <CheckboxGroup className="mobile-multiple-select-list" value={tempValue as string[]}>
                         <List behavior="scroll" direction="vertical">
                             {props.data.map(el => (
                                 <Checkbox onChange={() => handleMobileSelect(el.value)}
 
-                                key={el.value} value={el.value} label={el.label} labelPosition="left" />
+                                    key={el.value} value={el.value} label={el.label} labelPosition="left" />
                             ))}
                         </List>
                     </CheckboxGroup>
-                    <List style={{justifyContent: "flex-end"}} className="multiple-select-buttons" behavior="wrap" direction="horizontal">
+                    <List style={{ justifyContent: "flex-end" }} className="multiple-select-buttons" behavior="wrap" direction="horizontal">
                         <Button variant="outline" text="Cancel" onClick={() => mobileSelectRef.current?.classList.remove("open")} />
-                        <Button text="OK"  onClick={() => { setValue(tempValue); mobileSelectRef.current?.classList.remove("open") }} />
+                        <Button text="OK" onClick={() => { setValue(tempValue); mobileSelectRef.current?.classList.remove("open") }} />
                     </List>
                 </div>
-            </div>
+            </div>, document.body)}
+
+
         </>
     )
 

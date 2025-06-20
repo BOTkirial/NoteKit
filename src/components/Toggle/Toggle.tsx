@@ -14,6 +14,9 @@ interface PropsToggle {
     onIcon?: ReactNode;
     offIcon?: ReactNode;
     onColor?: MantineColor;
+    error?: string;
+    onChange?: (value: boolean) => void;
+    onBlur?(): () => void;
 }
 
 const Toggle = (props: PropsToggle) => {
@@ -43,14 +46,17 @@ const Toggle = (props: PropsToggle) => {
         props.onToggle ? props.onToggle(!value) : null;
         props.onToggleOn && !value ? props.onToggleOn() : null;
         props.onToggleOff && value ? props.onToggleOff() : null;
+        props.onChange ? props.onChange(!value) : null;
     }
 
     return (
         <Switch
+            error={props.error}
             className={["component-toggle", props.disabled ? "disabled" : ""].join(" ")}
             disabled={props.disabled}
             checked={value}
             onChange={onChange}
+            onBlur={props.onBlur}
             label={getLabel()}
             color={props.onColor ?? "blue"}
             size="md"

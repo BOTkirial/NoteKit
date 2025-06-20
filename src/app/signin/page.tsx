@@ -1,16 +1,15 @@
 "use client"
 
-import Button from "@component/Button/Button";
-import API from "@services/client/API";
-import { signIn, signOut } from "next-auth/react";
+import FormSignIn from "@appComponents/SignInForm/SignInForm";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
+    
+    const router = useRouter();
+    
     return (
         <div className="sign-in">
-            <h1>SignIn</h1>
-            <Button text="Connexion" onClick={() => signIn("credentials", { username: "admin", password: "admin" })} />
-            <Button text="Déconnexion" onClick={() => signOut()} />
-            <Button text="query /user" onClick={() =>  API.Get("/user") } />
+            <FormSignIn onSuccess={() => router.push("/")} />
         </div>
     )
 }

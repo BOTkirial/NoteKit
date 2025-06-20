@@ -1,7 +1,8 @@
-import { Divider, Radio, RadioGroup, Select } from "@mantine/core";
-import { useRef, useState } from "react";
+import { Radio, RadioGroup, Select } from "@mantine/core";
+import { useEffect, useRef, useState } from "react";
 import List from "../List/List";
 import Button from "../Button/Button";
+import { createPortal } from "react-dom";
 
 interface PropsStaticSingleSelect {
     defaultValue?: string;
@@ -36,7 +37,8 @@ const StaticSingleSelect = (props: PropsStaticSingleSelect) => {
                 nothingFoundMessage={props.nothingFoundMessage || "Nothing found"}
                 onClear={() => setTempValue(null)}
             />
-            <div ref={mobileSelectRef} className="mobile-single-select-background">
+            {
+                createPortal(<div ref={mobileSelectRef} className="mobile-single-select-background">
                 <div className="mobile-single-select">
                     <RadioGroup className="mobile-single-select-list" value={tempValue as string}>
                         <List behavior="scroll" direction="vertical">
@@ -50,7 +52,9 @@ const StaticSingleSelect = (props: PropsStaticSingleSelect) => {
                         <Button text="OK"  onClick={() => { setValue(tempValue); mobileSelectRef.current?.classList.remove("open") }} />
                     </List>
                 </div>
-            </div>
+            </div>, document.body)
+            }
+            
         </>
     )
 

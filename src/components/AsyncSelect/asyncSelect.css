@@ -1,0 +1,60 @@
+
+
+.mobile-single-select-background, .mobile-multiple-select-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+
+    &.open {
+        opacity: 1;
+        pointer-events: unset;
+    }
+
+    .mobile-single-select, .mobile-multiple-select {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 320px;
+        border-radius: var(--mantine-radius-default);
+        background-color: var(--mantine-color-body);
+        color: var(--mantine-color-text);
+        padding: 25px 40px 25px 40px;
+
+        .mobile-single-select-list, .mobile-multiple-select-list {
+
+            max-height: 450px;
+            overflow-y: auto;
+
+            .mantine-Radio-body, .mantine-Checkbox-body {
+
+                display: flex;
+                margin-top: 10px;
+                justify-content: space-between;
+    
+                .mantine-Radio-labelWrapper, .mantine-Checkbox-label {
+                    font-size: 1.5em;
+                }
+
+                .mantine-Checkbox-input {
+                    border-radius: 5px;
+                }
+    
+            }
+
+        }
+
+        .single-select-buttons, .multiple-select-buttons {
+            margin-top: 10px;
+        }
+
+    }
+
+}
+

@@ -29,6 +29,7 @@ const List = (props: PropsList) => {
             style={{
                 overflow: behavior === "wrap" ? "visible" : "scroll",
                 paddingBottom: behavior === "scroll" ? 10 : "auto",
+                padding: behavior === "wrap" ? `0 ${xGap}px 0 ${xGap}px` : "auto",
                 whiteSpace: "nowrap",
                 ...props.style
             }}

@@ -1,7 +1,8 @@
 import User from "@entity/User";
-import { getServerSession } from "next-auth";
 import DataSourceManager from "src/DataSourceManager";
 import { getSession } from "./authentification/nextAuthConfig";
+import ApiRequestParams from "src/types/ApiRequestParams";
+import { withRequestParams } from "./api.service";
 
 
 /**
@@ -25,24 +26,18 @@ export const createUser = async (name: string, password: string, email?: string)
 /**
  * Find a user in the database by it's id
  */
-export const getUserById = async (userId: number): Promise<User> => {
-    const dataSource = await DataSourceManager.getQueryRunner();
-    const user = await dataSource.manager.findOneBy(User,  { id: userId } );
-    if(user === null) {
-        throw new Error("No user found in the database")
-    }
+export const getUserById = async (userId: number): Promise<User | null> => {
+  const dataSource = await DataSourceManager.getQueryRunner();
+  const user = await dataSource.manager.findOne(User, { where: { id: userId }, select: { id: true, name: true, email: true } } );
     return user;
 }
 
 /**
  * Finds a user in the database by it's name
  */
-export const getUserByName = async (userName: string): Promise<User> => {
+export const getUserByName = async (userName: string): Promise<User | null> => {
     const dataSource = await DataSourceManager.getQueryRunner();
     const user = await dataSource.manager.findOneBy(User,  { name: userName } );
-    if(user === null) {
-        throw new Error("No user found in the database")
-    }
     return user;
 }
 
@@ -71,15 +66,19 @@ export const deleteUser = async (user:User): Promise<void> => {
 /**
  * Retrieve all the users in the database
  */
-export const getAllUsers = async (): Promise<Array<User>> => {
+export const getAllUsers = async (parameters?: ApiRequestParams): Promise<Array<User>> => {
     const dataSource = await DataSourceManager.getQueryRunner();
-    const tabUsers = await dataSource.manager.find(User);
+    const tabUsers = await dataSource.manager.find(User, withRequestParams({}, parameters));
     if(tabUsers === null) {
         throw new Error("No users found in the database")
     }
     return tabUsers;
 }
 
+/**
+ * Retrieve the currently connected user
+ * Throws if unauthenticated
+ */
 export const getCurrentUser = async(): Promise<User> => {
 
   const userSession = await getSession();
@@ -89,6 +88,11 @@ export const getCurrentUser = async(): Promise<User> => {
   }
 
   const user = await getUserById((userSession.user as any).id);
+
+  if(!user) {
+    throw new Error("User does not exist");
+  }
+
   return user;
 
 }

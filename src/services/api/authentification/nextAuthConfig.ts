@@ -74,7 +74,7 @@ export const config = {
       (session.user as any)["id"] = token.id;
       (session.user as any)["email"] = token.email;
       return session;
-    },
+    }
   },
   cookies: {
     sessionToken: {

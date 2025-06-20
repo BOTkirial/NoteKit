@@ -8,6 +8,7 @@
       "@utils/*": ["src/utils/*"],
       "@constants/*": ["src/constants/*"],
       "@appComponents/*": ["src/appComponents/*"],
+      "@hooks/*": ["src/hooks/*"],
     },
     "lib": [
       "es5",

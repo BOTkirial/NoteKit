@@ -1,23 +1,19 @@
-"use client";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-import FormNewNote from "@appComponents/FormNewNote/FormNewNote";
-import NoteList from "@appComponents/NoteList/NoteList";
-import Modal, { ModalRef } from "@component/Modal/Modal";
-import { useRef } from "react";
+const Home = async () => {
 
-const Home = () => {
+  const session = await getServerSession();
 
-  const refModal = useRef<ModalRef>(null);
+  if (!session) {
+    redirect('/signin');
+  }
+
+  redirect("/notes");
+
 
   return (
-    <div className="main">
-        <h1>Favoris</h1>
-        <Modal ref={refModal} title="Créer une note">
-          <FormNewNote onSuccess={() => refModal.current ? refModal.current.close() : null } />
-        </Modal>
-        <h1>Notes</h1>
-        <NoteList />
-    </div>
+    <div className="main" />
   );
 
 }

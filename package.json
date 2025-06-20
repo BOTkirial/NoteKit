@@ -22,6 +22,8 @@
       "@mantine/hooks": "^7.17.0",
       "@mantine/notifications": "^7.17.4",
       "@tanstack/react-query": "^5.74.3",
+      "@tiptap/react": "^2.12.0",
+      "@tiptap/starter-kit": "^2.12.0",
       "bcrypt": "^5.1.1",
       "lodash": "^4.17.21",
       "lucide-react": "^0.476.0",
@@ -32,7 +34,6 @@
       "react-dom": "^19.0.0",
       "reflect-metadata": "^0.1.13",
       "sqlite3": "^5.1.7",
-      "tiptap": "^1.32.2",
       "typeorm": "0.3.20"
    },
    "devDependencies": {

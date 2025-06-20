@@ -2,6 +2,7 @@ import { Modal as MantineModal } from "@mantine/core"
 import { forwardRef, ReactNode, useImperativeHandle, useState } from "react";
 import Button, { PropsButton } from "@component/Button/Button";
 import { PlusIcon } from "lucide-react";
+import "./modal.css";
 
 interface PropsModal {
     title?: string;

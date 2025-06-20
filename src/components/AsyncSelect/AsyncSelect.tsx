@@ -1,24 +1,39 @@
-import { Loader, Select } from "@mantine/core";
+import AsyncMultiSelect from "./AsyncMultiSelect";
+import "./asyncSelect.css";
+import AsyncSingleSelect from "./AsyncSingleSelect";
 
+interface BasePropsAsyncSelect {
+  placeholder?: string;
+  nothingFoundMessage?: string;
+  route: string;
+}
 
-const AsyncSelect = () => {
+/**
+ * Conditional type based on "type"
+ * Allows an array of string in case of type === "multiSelect"
+ * Allows a string in case of type === "singleSelect"
+ */
+type PropsAsyncSelect =
+  ({
+    type: "multiSelect";
+    defaultValue: string[];
+    onChange?: (value: string[]) => void;
+  }
+    | {
+      type: "singleSelect";
+      defaultValue?: string;
+      onChange?: (value: string | null) => void;
+    })
+  & BasePropsAsyncSelect;
 
-    return (
-        <Select
-        className="async-select"
-        checkIconPosition="right"
-        clearable={true}
-        defaultValue="ng"
-          data={[
-            { value: 'react', label: 'React' },
-            { value: 'ng', label: 'Angular' },
-          ]}
-          searchable
-          nothingFoundMessage="Nothing found..."
-          rightSection={<><Loader /></>}
-        />
+const AsyncSelect = (props: PropsAsyncSelect) => {
 
-    )
+  return (
+    <div className="async-select-wrapper">
+      {/* {props.type === "multiSelect" && <AsyncMultiSelect forceModal={true} />} */}
+      {props.type === "singleSelect" && <AsyncSingleSelect forceModal={true}  {...props} />}
+    </div>
+  )
 
 }
 

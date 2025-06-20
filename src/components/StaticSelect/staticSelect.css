@@ -10,10 +10,12 @@
     opacity: 0;
     pointer-events: none;
     z-index: 9999;
+    display: none;
 
     &.open {
+        display: block;
         opacity: 1;
-        pointer-events: unset;
+        pointer-events: all;
     }
 
     .mobile-single-select, .mobile-multiple-select {
